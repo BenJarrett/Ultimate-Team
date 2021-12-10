@@ -28,5 +28,6 @@ namespace Ultimate_Team_API.Data_Access
 
             return teams;
         }
+
     }
 }

@@ -14,10 +14,12 @@ namespace Ultimate_Team_API.Controllers
     {
 
         PlayerRepository _repo;
+        TeamRepository _teamRepository;
 
-        public PlayerController(PlayerRepository repo)
+        public PlayerController(PlayerRepository repo, TeamRepository teamRepo)
         {
             _repo = repo;
+            _teamRepository = teamRepo;
         }
 
         // Get All Players //
@@ -48,6 +50,12 @@ namespace Ultimate_Team_API.Controllers
             return Ok(_repo.GetPlayersByTeamId(id));
         }
 
-        
+        // Get Players by Team Conference //
+        [HttpGet("westernConferencePlayers/")]
+        public IActionResult GetAllPlayersInWesternConference()
+        {
+            return Ok(_repo.GetPlayersByWesternConference());
+        }
+
     }
 }

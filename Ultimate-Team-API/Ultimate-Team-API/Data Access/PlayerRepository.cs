@@ -56,5 +56,20 @@ namespace Ultimate_Team_API.Data_Access
 
             return players;
         }
+
+        internal IEnumerable<Player> GetPlayersByWesternConference()
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var sql = @"Select *
+                From Players p
+					join Teams t
+						on p.teamId = t.id
+							where t.conference = 1";
+
+            var players = db.Query<Player>(sql);
+
+            return players;
+        }
     }
 }
