@@ -28,5 +28,33 @@ namespace Ultimate_Team_API.Data_Access
 
             return players;
         }
+
+        // Get Single Player by Id
+        internal object GetPlayerByTeamId(Guid id)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var sql = @"Select *
+                        From Players
+                        where id = @id";
+
+
+            var player = db.QueryFirstOrDefault<Player>(sql, new { id });
+
+            return player;
+        }
+
+        internal IEnumerable<Player> GetPlayersByTeamId(Guid teamId)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var sql = @"Select *
+                From Players
+                WHERE teamId = @id";
+
+            var players = db.Query<Player>(sql, new { id = teamId });
+
+            return players;
+        }
     }
 }
