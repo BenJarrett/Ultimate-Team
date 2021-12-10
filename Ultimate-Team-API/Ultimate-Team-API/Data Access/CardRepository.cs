@@ -43,5 +43,17 @@ namespace Ultimate_Team_API.Data_Access
             return cards;
         }
 
+        internal IEnumerable<Card> GetCardsByUserId(Guid userId)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var sql = @"Select *
+                From Cards
+                WHERE userId = @id";
+
+            var cards = db.Query<Card>(sql, new { id = userId });
+
+            return cards;
+        }
     }
 }

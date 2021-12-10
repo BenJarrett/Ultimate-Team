@@ -26,11 +26,18 @@ namespace Ultimate_Team_API.Controllers
             return Ok(_repo.GetAll());
         }
 
-        // Get Player's Cards //
+        // Get All Cards of a Specific Player //
         [HttpGet("player/{id}")]
         public IActionResult GetAllPlayerCards(Guid id)
         {
             return Ok(_repo.GetCardByPlayerId(id));
+        }
+
+        // Get User's Cards//
+        [HttpGet("user/{id}")]
+        public IActionResult GetAllUsersCards(Guid id)
+        {
+            return Ok(_repo.GetCardsByUserId(id));
         }
     }
 }
