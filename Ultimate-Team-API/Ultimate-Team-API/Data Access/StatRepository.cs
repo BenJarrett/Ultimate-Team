@@ -28,5 +28,19 @@ namespace Ultimate_Team_API.Data_Access
 
             return stats;
         }
+
+        // Get Player's Stats //
+        internal IEnumerable<Stat> GetStatsByPlayerId(Guid playerId)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var sql = @"Select *
+                From Stats
+                WHERE playerId = @playerId";
+
+            var stats = db.Query<Stat>(sql, new { playerId = playerId });;
+
+            return stats;
+        }
     }
 }

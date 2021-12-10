@@ -47,6 +47,5 @@ namespace Ultimate_Team_API.Controllers
         {
             return Ok(_repo.GetPlayersByTeamId(id));
         }
-
     }
 }
