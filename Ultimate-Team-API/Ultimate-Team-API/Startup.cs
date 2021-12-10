@@ -34,6 +34,7 @@ namespace Ultimate_Team_API
             services.AddTransient<TeamRepository>();
             services.AddTransient<PackRepository>();
             services.AddTransient<StatRepository>();
+            services.AddTransient<CardRepository>();
 
 
             services.AddControllers().AddJsonOptions(options =>
