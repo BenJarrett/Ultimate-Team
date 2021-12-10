@@ -71,5 +71,12 @@ namespace Ultimate_Team_API.Controllers
         {
             return Ok(_repo.GetPlayersByCardId(id));
         }
+
+        // Get Player's by User Id //
+        [HttpGet("user/{id}")]
+        public IActionResult GetUsersPlayers(Guid id)
+        {
+            return Ok(_repo.GetUsersPlayersByUserId(id));
+        }
     }
 }

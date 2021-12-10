@@ -103,5 +103,22 @@ namespace Ultimate_Team_API.Data_Access
             return players;
         }
 
+        // Get All Players of a Specific User //
+        internal IEnumerable<Player> GetUsersPlayersByUserId(Guid userId)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var sql = @"Select *
+                From Players p
+                    join Cards c
+                        on p.cardId = c.id
+                            join Users u
+                                on c.userId = u.id
+                                    where u.id = @id";
+
+            var cards = db.Query<Player>(sql, new { id = userId });
+
+            return cards;
+        }
     }
 }
