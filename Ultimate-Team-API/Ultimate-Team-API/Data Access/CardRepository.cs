@@ -28,5 +28,20 @@ namespace Ultimate_Team_API.Data_Access
 
             return players;
         }
+
+        // Get All Cards of a Specific Player//
+        internal IEnumerable<Card> GetCardByPlayerId(Guid playerId)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var sql = @"Select *
+                From Cards
+                WHERE playerId = @id";
+
+            var cards = db.Query<Card>(sql, new { id = playerId });
+
+            return cards;
+        }
+
     }
 }

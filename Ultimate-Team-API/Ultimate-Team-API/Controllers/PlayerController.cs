@@ -43,7 +43,7 @@ namespace Ultimate_Team_API.Controllers
             return Ok(player);
         }
 
-        // Get Player's by Team Orders //
+        // Get Player's by Team Id //
         [HttpGet("team/{id}")]
         public IActionResult GetAllPlayersByTeam(Guid id)
         {
@@ -57,7 +57,7 @@ namespace Ultimate_Team_API.Controllers
             return Ok(_repo.GetPlayersInWesternConference());
         }
 
-
+         
         // Get All Players in Eastern Conference //
         [HttpGet("team/conference/eastern")]
         public IActionResult GetAllPlayersInEasternConference()
@@ -65,5 +65,11 @@ namespace Ultimate_Team_API.Controllers
             return Ok(_repo.GetPlayersInEasternConference());
         }
 
+        // Get Player's by Card Id //
+        [HttpGet("card/{id}")]
+        public IActionResult GetPlayerByCard(Guid id)
+        {
+            return Ok(_repo.GetPlayersByCardId(id));
+        }
     }
 }
