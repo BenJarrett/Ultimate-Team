@@ -50,11 +50,19 @@ namespace Ultimate_Team_API.Controllers
             return Ok(_repo.GetPlayersByTeamId(id));
         }
 
-        // Get Players by Team Conference //
-        [HttpGet("westernConferencePlayers/")]
+        // Get All Players in Western Conference //
+        [HttpGet("team/conference/western")]
         public IActionResult GetAllPlayersInWesternConference()
         {
-            return Ok(_repo.GetPlayersByWesternConference());
+            return Ok(_repo.GetPlayersInWesternConference());
+        }
+
+
+        // Get All Players in Eastern Conference //
+        [HttpGet("team/conference/eastern")]
+        public IActionResult GetAllPlayersInEasternConference()
+        {
+            return Ok(_repo.GetPlayersInEasternConference());
         }
 
     }

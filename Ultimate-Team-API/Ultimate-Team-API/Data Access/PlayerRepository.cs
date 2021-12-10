@@ -57,7 +57,8 @@ namespace Ultimate_Team_API.Data_Access
             return players;
         }
 
-        internal IEnumerable<Player> GetPlayersByWesternConference()
+        // Get All Players in Western Confernece //
+        internal IEnumerable<Player> GetPlayersInWesternConference()
         {
             using var db = new SqlConnection(_connectionString);
 
@@ -66,6 +67,22 @@ namespace Ultimate_Team_API.Data_Access
 					join Teams t
 						on p.teamId = t.id
 							where t.conference = 1";
+
+            var players = db.Query<Player>(sql);
+
+            return players;
+        }
+
+        // Get All Players in Eastern Conference //
+        internal IEnumerable<Player> GetPlayersInEasternConference()
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var sql = @"Select *
+                From Players p
+					join Teams t
+						on p.teamId = t.id
+							where t.conference = 0";
 
             var players = db.Query<Player>(sql);
 
