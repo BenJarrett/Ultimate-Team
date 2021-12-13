@@ -129,16 +129,34 @@ namespace Ultimate_Team_API.Data_Access
         {
             using var db = new SqlConnection(_connectionString);
 
+            var client = new RestClient("http://data.nba.net/data/10s/prod/v1/2021");
+
+            var request = new RestRequest("players.json");
+
+            var response = client.Get<AllPlayersResponseData>(request);
+
             var sql = @"Select *
                 From Players
                 WHERE cardId = @id";
 
             var players = db.Query<Player>(sql, new { id = cardId });
 
+            var apiPlayers = response.Data.league.standard;
+
+            foreach (var player in players)
+            {
+                var matchingApiPlayer = apiPlayers.FirstOrDefault(p => p.personId == player.PlayerApiId);
+                player.Height = $"{matchingApiPlayer.heightFeet}' {matchingApiPlayer.heightInches}\"";
+                player.Weight = matchingApiPlayer.weightPounds;
+                player.Position = matchingApiPlayer.pos;
+                player.Age = matchingApiPlayer.dateOfBirthUTC;
+                player.YearsPro = matchingApiPlayer.yearsPro;
+            };
+
             return players;
         }
 
-        // Get All Players of a Specific User// NOT WORKING COMPLETELY YET! //
+        // Get All Players of a Specific User//
         internal IEnumerable<Player> GetUsersPlayersByUserId(Guid userId)
         {
             using var db = new SqlConnection(_connectionString);
