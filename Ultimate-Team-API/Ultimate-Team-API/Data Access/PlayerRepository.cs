@@ -50,9 +50,15 @@ namespace Ultimate_Team_API.Data_Access
         } 
 
         // Get Single Player by Id
-        internal object GetPlayerByTeamId(Guid id)
+        internal object GetPlayerById(Guid id)
         {
             using var db = new SqlConnection(_connectionString);
+
+            var client = new RestClient("http://data.nba.net/data/10s/prod/v1/2021");
+
+            var request = new RestRequest("players.json");
+
+            var response = client.Get<AllPlayersResponseData>(request);
 
             var sql = @"Select *
                         From Players
@@ -60,6 +66,15 @@ namespace Ultimate_Team_API.Data_Access
 
 
             var player = db.QueryFirstOrDefault<Player>(sql, new { id });
+
+            var apiPlayers = response.Data.league.standard;
+
+                var matchingApiPlayer = apiPlayers.FirstOrDefault(p => p.personId == player.PlayerApiId);
+                player.Height = $"{matchingApiPlayer.heightFeet}' {matchingApiPlayer.heightInches}\"";
+                player.Weight = matchingApiPlayer.weightPounds;
+                player.Position = matchingApiPlayer.pos;
+                player.Age = matchingApiPlayer.dateOfBirthUTC;
+                player.YearsPro = matchingApiPlayer.yearsPro;
 
             return player;
         }

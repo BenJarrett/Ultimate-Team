@@ -33,7 +33,7 @@ namespace Ultimate_Team_API.Controllers
         [HttpGet("{id}")]
         public IActionResult GetSinglePlayerById(Guid id)
         {
-            var player = _repo.GetPlayerByTeamId(id);
+            var player = _repo.GetPlayerById(id);
 
             if (player == null)
             {
