@@ -14,27 +14,13 @@ namespace Ultimate_Team_API.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string PlayerImage { get; set; }
-        public decimal Age { get; set; }
+        public string Age { get; set; }
         public string Height { get; set; }
         public string Weight { get; set; }
-        public string Wingspan { get; set; }
-        public decimal YearsPro { get; set; }
-        [JsonConverter(typeof(JsonStringEnumConverter))] public Position Position { get; set; }
+        public string YearsPro { get; set; }
+        public string Position { get; set; }
         public Guid CardId { get; set; }
-        public Guid PlayerApiId { get; set; }
+        public string PlayerApiId { get; set; }
     }
 
-    public enum Position
-    {
-        [EnumMember(Value = "PG")]
-        Point_Guard,
-        [EnumMember(Value = "SG")]
-        Shooting_Guard,
-        [EnumMember(Value = "SF")]
-        Small_Forward,
-        [EnumMember(Value = "PF")]
-        Power_Forward,
-        [EnumMember(Value = "C")]
-        Center,
-    }
 }

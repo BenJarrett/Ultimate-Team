@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Ultimate_Team_API.Models;
+using RestSharp;
+using Ultimate_Team_API.Models.ExternalApi;
 
 namespace Ultimate_Team_API.Data_Access
 {
@@ -23,11 +25,29 @@ namespace Ultimate_Team_API.Data_Access
         {
             using var db = new SqlConnection(_connectionString);
 
+            var client = new RestClient("http://data.nba.net/data/10s/prod/v1/2021");
+
+            var request = new RestRequest("players.json");
+
+            var response = client.Get<AllPlayersResponseData>(request);
+
+
             var players = db.Query<Player>(@"Select *
                                         From Players");
+            var apiPlayers = response.Data.league.standard;
+
+            foreach (var player in players)
+            {
+                var matchingApiPlayer = apiPlayers.FirstOrDefault(p => p.personId == player.PlayerApiId);
+                player.Height = $"{matchingApiPlayer.heightFeet}' {matchingApiPlayer.heightInches}\"";
+                player.Weight = matchingApiPlayer.weightPounds;
+                player.Position = matchingApiPlayer.pos;
+                player.Age = matchingApiPlayer.dateOfBirthUTC;
+                player.YearsPro = matchingApiPlayer.yearsPro;
+            }
 
             return players;
-        }
+        } 
 
         // Get Single Player by Id
         internal object GetPlayerByTeamId(Guid id)
@@ -103,12 +123,12 @@ namespace Ultimate_Team_API.Data_Access
             return players;
         }
 
-        // Get All Players of a Specific User//
+        // Get All Players of a Specific User// NOT WORKING COMPLETELY YET! //
         internal IEnumerable<Player> GetUsersPlayersByUserId(Guid userId)
         {
             using var db = new SqlConnection(_connectionString);
 
-            var sql = @"Select *
+            var sql = @"Select p.*
                 From Players p
                     join Cards c
                         on p.cardId = c.id
