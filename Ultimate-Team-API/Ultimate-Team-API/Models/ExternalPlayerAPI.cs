@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Ultimate_Team_API.Models.ExternalApi
+namespace Ultimate_Team_API.Models.ExternalPlayerAPI
 {
     public class Internal
     {

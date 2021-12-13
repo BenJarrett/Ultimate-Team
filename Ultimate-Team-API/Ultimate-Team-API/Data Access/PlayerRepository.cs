@@ -7,7 +7,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Ultimate_Team_API.Models;
 using RestSharp;
-using Ultimate_Team_API.Models.ExternalApi;
+using Ultimate_Team_API.Models.ExternalPlayerAPI;
+using Ultimate_Team_API.Models.ExternalTeamAPI;
+
 
 namespace Ultimate_Team_API.Data_Access
 {
@@ -34,6 +36,7 @@ namespace Ultimate_Team_API.Data_Access
 
             var players = db.Query<Player>(@"Select *
                                         From Players");
+
             var apiPlayers = response.Data.league.standard;
 
             foreach (var player in players)
@@ -83,11 +86,31 @@ namespace Ultimate_Team_API.Data_Access
         {
             using var db = new SqlConnection(_connectionString);
 
+            var client = new RestClient("http://data.nba.net/data/10s/prod/v1/2021");
+
+            var request = new RestRequest("players.json");
+
+            var response = client.Get<AllPlayersResponseData>(request);
+
             var sql = @"Select *
                 From Players
                 WHERE teamId = @id";
 
             var players = db.Query<Player>(sql, new { id = teamId });
+
+            var apiPlayers = response.Data.league.standard;
+
+
+            foreach (var player in players)
+            {
+                var matchingApiPlayer = apiPlayers.FirstOrDefault(p => p.personId == player.PlayerApiId);
+                player.Height = $"{matchingApiPlayer.heightFeet}' {matchingApiPlayer.heightInches}\"";
+                player.Weight = matchingApiPlayer.weightPounds;
+                player.Position = matchingApiPlayer.pos;
+                player.Age = matchingApiPlayer.dateOfBirthUTC;
+                player.YearsPro = matchingApiPlayer.yearsPro;
+            }
+
 
             return players;
         }
@@ -97,13 +120,36 @@ namespace Ultimate_Team_API.Data_Access
         {
             using var db = new SqlConnection(_connectionString);
 
+            var client = new RestClient("http://data.nba.net/data/10s/prod/v1/2021");
+
+            var request = new RestRequest("players.json");
+
+            var response = client.Get<AllPlayersResponseData>(request);
+
+
             var sql = @"Select *
                 From Players p
 					join Teams t
 						on p.teamId = t.id
-							where t.conference = 1";
+							where t.conferenceType = 1";
 
+
+            
             var players = db.Query<Player>(sql);
+
+            var apiPlayers = response.Data.league.standard;
+            
+            foreach (var player in players)
+            {
+                var matchingApiPlayer = apiPlayers.FirstOrDefault(p => p.personId == player.PlayerApiId);
+                player.Height = $"{matchingApiPlayer.heightFeet}' {matchingApiPlayer.heightInches}\"";
+                player.Weight = matchingApiPlayer.weightPounds;
+                player.Position = matchingApiPlayer.pos;
+                player.Age = matchingApiPlayer.dateOfBirthUTC;
+                player.YearsPro = matchingApiPlayer.yearsPro;
+                player.TeamId = matchingApiPlayer.teamId;
+            }
+
 
             return players;
         }
@@ -113,13 +159,34 @@ namespace Ultimate_Team_API.Data_Access
         {
             using var db = new SqlConnection(_connectionString);
 
+            var client = new RestClient("http://data.nba.net/data/10s/prod/v1/2021");
+
+            var request = new RestRequest("players.json");
+
+            var response = client.Get<AllPlayersResponseData>(request);
+
+
             var sql = @"Select *
                 From Players p
 					join Teams t
 						on p.teamId = t.id
-							where t.conference = 0";
+							where t.conferenceType = 0";
 
             var players = db.Query<Player>(sql);
+
+            var apiPlayers = response.Data.league.standard;
+
+            foreach (var player in players)
+            {
+                var matchingApiPlayer = apiPlayers.FirstOrDefault(p => p.personId == player.PlayerApiId);
+                player.Height = $"{matchingApiPlayer.heightFeet}' {matchingApiPlayer.heightInches}\"";
+                player.Weight = matchingApiPlayer.weightPounds;
+                player.Position = matchingApiPlayer.pos;
+                player.Age = matchingApiPlayer.dateOfBirthUTC;
+                player.YearsPro = matchingApiPlayer.yearsPro;
+                player.TeamId = matchingApiPlayer.teamId;
+            }
+
 
             return players;
         }
@@ -161,6 +228,12 @@ namespace Ultimate_Team_API.Data_Access
         {
             using var db = new SqlConnection(_connectionString);
 
+            var client = new RestClient("http://data.nba.net/data/10s/prod/v1/2021");
+
+            var request = new RestRequest("players.json");
+
+            var response = client.Get<AllPlayersResponseData>(request);
+
             var sql = @"Select p.*
                 From Players p
                     join Cards c
@@ -170,6 +243,18 @@ namespace Ultimate_Team_API.Data_Access
                                     where u.id = @id";
 
             var cards = db.Query<Player>(sql, new { id = userId });
+
+            var apiPlayers = response.Data.league.standard;
+
+            foreach (var player in cards)
+            {
+                var matchingApiPlayer = apiPlayers.FirstOrDefault(p => p.personId == player.PlayerApiId);
+                player.Height = $"{matchingApiPlayer.heightFeet}' {matchingApiPlayer.heightInches}\"";
+                player.Weight = matchingApiPlayer.weightPounds;
+                player.Position = matchingApiPlayer.pos;
+                player.Age = matchingApiPlayer.dateOfBirthUTC;
+                player.YearsPro = matchingApiPlayer.yearsPro;
+            };
 
             return cards;
         }

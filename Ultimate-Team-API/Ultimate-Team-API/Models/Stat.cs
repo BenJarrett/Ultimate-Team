@@ -8,7 +8,7 @@ namespace Ultimate_Team_API.Models
     public class Stat
     {
         public Guid Id { get; set; }
-        public Guid PlayerId { get; set; }
+        public string PlayerId { get; set; }
         public string PPG { get; set; }
         public string APG { get; set; }
         public string RPG { get; set; }

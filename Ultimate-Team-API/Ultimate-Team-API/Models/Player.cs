@@ -9,7 +9,7 @@ namespace Ultimate_Team_API.Models
 {
     public class Player
     {
-        public Guid Id { get; set; }
+        public string Id { get; set; }
         public string TeamId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -19,7 +19,7 @@ namespace Ultimate_Team_API.Models
         public string Weight { get; set; }
         public string YearsPro { get; set; }
         public string Position { get; set; }
-        public Guid CardId { get; set; }
+        public string CardId { get; set; }
         public string PlayerApiId { get; set; }
     }
 
