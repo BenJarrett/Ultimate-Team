@@ -58,6 +58,21 @@ namespace Ultimate_Team_API.Data_Access
             return card;
         }
 
+        // Get All Cards In A Pack by Pack Id //
+        internal IEnumerable<Card> GetCardsByPackId(Guid packId)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var sql = @"Select *
+                From Cards
+                WHERE packId = @id";
+
+            var cards = db.Query<Card>(sql, new { id = packId });
+
+
+            return cards;
+        }
+
         // Get all Users' Cards //
         internal IEnumerable<Card> GetCardsByUserId(Guid userId)
         {

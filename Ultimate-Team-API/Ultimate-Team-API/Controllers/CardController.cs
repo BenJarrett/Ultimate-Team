@@ -51,8 +51,14 @@ namespace Ultimate_Team_API.Controllers
                 return NotFound($"No Card with the Id of {id} was found.");
             }
 
-
             return Ok(card);
+        }
+
+        // Get All Cards of a Specific Pack by PackId //
+        [HttpGet("pack/{id}")]
+        public IActionResult GetAllCardsInPack(Guid id)
+        {
+            return Ok(_repo.GetCardsByPackId(id));
         }
 
     }
