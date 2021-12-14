@@ -52,8 +52,8 @@ namespace Ultimate_Team_API.Data_Access
             return players;
         } 
 
-        // Get Single Player by Id
-        internal object GetPlayerById(Guid id)
+        // Get Single Player by Id //
+        internal object GetPlayerById(string id)
         {
             using var db = new SqlConnection(_connectionString);
 
@@ -81,8 +81,25 @@ namespace Ultimate_Team_API.Data_Access
 
             return player;
         }
+
+        //// Get Player by Card Id //
+        //internal IEnumerable<Player> GetPlayersCardsByPlayerId(string playerId)
+        //{
+        //    using var db = new SqlConnection(_connectionString);
+
+        //    var response = client.Get<AllPlayersResponseData>(request);
+
+        //    var sql = @"Select *
+        //        From Cards
+        //        WHERE playerId = @playerId";
+
+        //    var cards = db.Query<Card>(sql, new { playerId = playerId });
+
+        //    return cards;
+        //}
+
         // Get All Players on a Specific Team //
-        internal IEnumerable<Player> GetPlayersByTeamId(Guid teamId)
+        internal IEnumerable<Player> GetPlayersByTeamId(string teamId)
         {
             using var db = new SqlConnection(_connectionString);
 
@@ -192,7 +209,7 @@ namespace Ultimate_Team_API.Data_Access
         }
 
         // Get Player by Card Id //
-        internal IEnumerable<Player> GetPlayersByCardId(Guid cardId)
+        internal IEnumerable<Player> GetPlayersCardsByCardId(string cardId)
         {
             using var db = new SqlConnection(_connectionString);
 

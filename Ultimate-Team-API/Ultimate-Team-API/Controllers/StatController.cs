@@ -27,7 +27,7 @@ namespace Ultimate_Team_API.Controllers
 
         // Get Player's Stats//
         [HttpGet("{playerId}")]
-        public IActionResult GetPlayersStats(Guid playerId)
+        public IActionResult GetPlayersStats(string playerId)
         {
             return Ok(_repo.GetStatsByPlayerId(playerId));
         }

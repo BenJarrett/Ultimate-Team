@@ -19,7 +19,7 @@ namespace Ultimate_Team_API.Models.ExternalStatAPI
         public string endToEndTimeMillis { get; set; }
     }
 
-    public class CurrentApiStat
+    public class Latest
     {
         public int seasonYear { get; set; }
         public int seasonStageId { get; set; }
@@ -90,7 +90,7 @@ namespace Ultimate_Team_API.Models.ExternalStatAPI
         public string td3 { get; set; }
     }
 
-    public class Team
+    public class PlayersApiTeam
     {
         public string teamId { get; set; }
         public string ppg { get; set; }
@@ -164,7 +164,7 @@ namespace Ultimate_Team_API.Models.ExternalStatAPI
     public class Season
     {
         public int seasonYear { get; set; }
-        public List<Team> teams { get; set; }
+        public List<PlayersApiTeam> teams { get; set; }
         public Total total { get; set; }
     }
 
@@ -175,7 +175,7 @@ namespace Ultimate_Team_API.Models.ExternalStatAPI
 
     public class Stats
     {
-        public CurrentApiStat CurrentApiStat { get; set; }
+        public Latest latest { get; set; }
         public CareerSummary careerSummary { get; set; }
         public RegularSeason regularSeason { get; set; }
     }

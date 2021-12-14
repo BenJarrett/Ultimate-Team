@@ -31,7 +31,7 @@ namespace Ultimate_Team_API.Controllers
 
         // Get Player by Id // 
         [HttpGet("{id}")]
-        public IActionResult GetSinglePlayerById(Guid id)
+        public IActionResult GetSinglePlayerById(string id)
         {
             var player = _repo.GetPlayerById(id);
 
@@ -45,7 +45,7 @@ namespace Ultimate_Team_API.Controllers
 
         // Get Player's by Team Id //
         [HttpGet("team/{id}")]
-        public IActionResult GetAllPlayersByTeam(Guid id)
+        public IActionResult GetAllPlayersByTeam(string id)
         {
             return Ok(_repo.GetPlayersByTeamId(id));
         }
@@ -67,10 +67,17 @@ namespace Ultimate_Team_API.Controllers
 
         // Get Player's by Card Id //
         [HttpGet("card/{id}")]
-        public IActionResult GetPlayerByCard(Guid id)
+        public IActionResult GetPlayerByCard(string id)
         {
-            return Ok(_repo.GetPlayersByCardId(id));
+            return Ok(_repo.GetPlayersCardsByCardId(id));
         }
+
+        //// Get Player's Cards by Player Id //
+        //[HttpGet("cards/{playerId}")]
+        //public IActionResult GetPlayerCardsByPlayerId(string playerId)
+        //{
+        //    return Ok(_repo.GetPlayersCardsByPlayerId(playerId));
+        //}
 
         // Get Player's by User Id //
         [HttpGet("user/{id}")]

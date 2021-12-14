@@ -28,7 +28,7 @@ namespace Ultimate_Team_API.Controllers
 
         // Get All Cards of a Specific Player //
         [HttpGet("player/{id}")]
-        public IActionResult GetAllPlayerCards(Guid id)
+        public IActionResult GetAllPlayerCards(string id)
         {
             return Ok(_repo.GetCardByPlayerId(id));
         }
@@ -39,5 +39,21 @@ namespace Ultimate_Team_API.Controllers
         {
             return Ok(_repo.GetCardsByUserId(id));
         }
+
+        // Get A Card by Card Id //
+        [HttpGet("{id}")]
+        public IActionResult GetASingleCard(string id)
+        {
+            var card = _repo.GetACardByCardId(id);
+
+            if (card == null)
+            {
+                return NotFound($"No Card with the Id of {id} was found.");
+            }
+
+
+            return Ok(card);
+        }
+
     }
 }

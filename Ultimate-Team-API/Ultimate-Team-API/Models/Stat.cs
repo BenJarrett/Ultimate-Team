@@ -16,6 +16,7 @@ namespace Ultimate_Team_API.Models
         public string SPG { get; set; }
         public string MPG { get; set; }
         public string GamesPlayed { get; set; }
+        public string StatApiId { get; set; }
 
     }
 }

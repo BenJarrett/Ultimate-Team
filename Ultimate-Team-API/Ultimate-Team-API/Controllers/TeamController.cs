@@ -26,5 +26,19 @@ namespace Ultimate_Team_API.Controllers
         {
             return Ok(_repo.GetAll());
         }
+
+        // Get All Teams in Eastern Conference //
+        [HttpGet("conference/eastern")]
+        public IActionResult GetAllTeamsInEasternConference()
+        {
+            return Ok(_repo.GetTeamsInEasternConference());
+        }
+
+        // Get All Teams in Western Conference //
+        [HttpGet("conference/western")]
+        public IActionResult GetAllTeamsInWesternConference()
+        {
+            return Ok(_repo.GetTeamsInWesternConference());
+        }
     }
 }

@@ -10,7 +10,7 @@ namespace Ultimate_Team_API.Models
 {
     public class Card
     {
-        public String Id { get; set; }
+        public string Id { get; set; }
         public Guid UserId { get; set; }
         public Guid PackId { get; set; }
         public string PlayerId { get; set; }
