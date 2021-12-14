@@ -43,5 +43,23 @@ namespace Ultimate_Team_API.Data_Access
 
             return pack;
         }
+
+        // Get User's Packs //
+        internal IEnumerable<Pack> GetUsersPacksByUserId(Guid userId)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var sql = @"Select p.*
+                From Packs p
+                    join Cards c
+                        on p.id = c.packId
+                            join Users u
+                                on c.userId = u.id
+                                    where u.id = @id";
+
+            var packs = db.Query<Pack>(sql, new { id = userId });
+
+            return packs;
+        }
     }
 }

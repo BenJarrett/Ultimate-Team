@@ -41,5 +41,12 @@ namespace Ultimate_Team_API.Controllers
 
             return Ok(card);
         }
+
+        // Get User's Packs //
+        [HttpGet("user/{id}")]
+        public IActionResult GetUsersPacks(Guid id)
+        {
+            return Ok(_repo.GetUsersPacksByUserId(id));
+        }
     }
 }
