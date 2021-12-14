@@ -29,5 +29,20 @@ namespace Ultimate_Team_API.Data_Access
 
             return users;
         }
+
+        // Get A Single user by Id //
+        internal User GetSingleUserById(Guid id)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var sql = @"Select *
+                        From Users
+                        where id = @id";
+
+
+            var user = db.QueryFirstOrDefault<User>(sql, new { id });
+
+            return user;
+        }
     }
 }

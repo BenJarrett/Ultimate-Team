@@ -27,5 +27,20 @@ namespace Ultimate_Team_API.Controllers
             return Ok(_repo.GetAll());
         }
 
+
+        // Get A Single User by Id //
+        [HttpGet("{id}")]
+        public IActionResult GetASingleUser(Guid id)
+        {
+            var card = _repo.GetSingleUserById(id);
+
+            if (card == null)
+            {
+                return NotFound($"No User with the Id of {id} was found.");
+            }
+
+            return Ok(card);
+        }
+
     }
 }
