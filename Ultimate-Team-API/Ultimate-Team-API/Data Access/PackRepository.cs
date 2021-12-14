@@ -61,5 +61,43 @@ namespace Ultimate_Team_API.Data_Access
 
             return packs;
         }
+
+        // Get User's Unopened Packs //
+        internal IEnumerable<Pack> GetUsersUnopenedPacksByUserId(Guid userId)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var sql = @"Select p.*
+                From Packs p
+                    join Cards c
+                        on p.id = c.packId
+                            join Users u
+                                on c.userId = u.id
+                                    where u.id = @id
+                                        and p.status = 0";
+
+            var packs = db.Query<Pack>(sql, new { id = userId });
+
+            return packs;
+        }
+
+        // Get User's Opened Packs //
+        internal IEnumerable<Pack> GetUsersOpenedPacksByUserId(Guid userId)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var sql = @"Select p.*
+                From Packs p
+                    join Cards c
+                        on p.id = c.packId
+                            join Users u
+                                on c.userId = u.id
+                                    where u.id = @id
+                                        and p.status = 1";
+
+            var packs = db.Query<Pack>(sql, new { id = userId });
+
+            return packs;
+        }
     }
 }

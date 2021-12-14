@@ -48,5 +48,21 @@ namespace Ultimate_Team_API.Controllers
         {
             return Ok(_repo.GetUsersPacksByUserId(id));
         }
+
+        // Get User's Unopened Packs //
+
+        [HttpGet("unopened/user/{id}")]
+        public IActionResult GetUsersUnopenedPacks(Guid id)
+        {
+            return Ok(_repo.GetUsersUnopenedPacksByUserId(id));
+        }
+
+        // Get User's Opened Packs //
+
+        [HttpGet("opened/user/{id}")]
+        public IActionResult GetUsersOpenedPacks(Guid id)
+        {
+            return Ok(_repo.GetUsersOpenedPacksByUserId(id));
+        }
     }
 }
