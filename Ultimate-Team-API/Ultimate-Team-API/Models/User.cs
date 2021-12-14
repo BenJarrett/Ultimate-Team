@@ -12,6 +12,6 @@ namespace Ultimate_Team_API.Models
         public string LastName { get; set; }
         public string CustomerEmail { get; set; }
         public DateTime CustomerCreated { get; set; }
-        public bool Status { get; set; }
+        public bool Status { get; set; } = true;
     }
 }

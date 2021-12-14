@@ -44,5 +44,43 @@ namespace Ultimate_Team_API.Data_Access
 
             return user;
         }
+
+        // Add new User //
+        internal void Add(User newUser)
+        {
+
+            using var db = new SqlConnection(_connectionString);
+
+            var sql = @"insert into users(FirstName, LastName, CustomerEmail, Status)
+                        output inserted.Id
+                        values (@FirstName, @LastName, @CustomerEmail, @Status)";
+
+            var id = db.ExecuteScalar<Guid>(sql, newUser);
+
+
+            newUser.Id = id;
+
+        }
+
+        // Update User by Id //
+        internal User UpdateUser(Guid id, User user)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var sql = @"update Users
+                        Set FirstName = @firstName,
+	                    LastName = @lastName,
+	                    CustomerEmail = @customerEmail,
+                        Status = @status
+                        output inserted.*
+                     Where id = @id";
+
+
+            user.Id = id;
+
+            var updatedUser = db.QuerySingleOrDefault<User>(sql, user);
+
+            return updatedUser;
+        }
     }
 }
