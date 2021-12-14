@@ -28,5 +28,20 @@ namespace Ultimate_Team_API.Data_Access
 
             return packs;
         }
+
+        // Get A Single Pack by PAck Id
+        internal Pack GetAPackByCardId(Guid id)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var sql = @"Select *
+                        From Packs
+                        where id = @id";
+
+
+            var pack = db.QueryFirstOrDefault<Pack>(sql, new { id });
+
+            return pack;
+        }
     }
 }

@@ -26,5 +26,20 @@ namespace Ultimate_Team_API.Controllers
         {
             return Ok(_repo.GetAll());
         }
+
+
+        // Get A Pack by Pack Id //
+        [HttpGet("{id}")]
+        public IActionResult GetASinglePack(Guid id)
+        {
+            var card = _repo.GetAPackByCardId(id);
+
+            if (card == null)
+            {
+                return NotFound($"No Pack with the Id of {id} was found.");
+            }
+
+            return Ok(card);
+        }
     }
 }
