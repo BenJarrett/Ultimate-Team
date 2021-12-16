@@ -28,6 +28,16 @@ namespace Ultimate_Team_API.Controllers
             return Ok(_repo.GetAll());
         }
 
+        // Get user by google id from the database
+        [HttpGet("uid/{id}")]
+        public IActionResult GetSingleUserByGoogleId(string id)
+        {
+            var user = _repo.GetUserByGoogleId(id);
+
+            if (user is null) return Ok(null);
+
+            return Ok(user);
+        }
 
         // Get A Single User by Id //
         [HttpGet("{id}")]

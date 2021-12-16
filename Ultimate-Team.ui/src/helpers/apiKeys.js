@@ -9,8 +9,8 @@ const firebaseConfig = {
   measurementId: process.env.REACT_APP_MEASUREMENT_ID,
 };
 
-const sqlConfig = {
-  sqlDatabaseURL: process.env.REACT_APP_SQL_DATABASE_URL,
+const apiConfig = {
+  apiUrl: process.env.REACT_APP_API_URL
 };
 
-export { firebaseConfig, sqlConfig };
+export { firebaseConfig, apiConfig };

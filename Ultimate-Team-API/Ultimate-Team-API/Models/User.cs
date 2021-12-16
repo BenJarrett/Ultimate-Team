@@ -13,5 +13,6 @@ namespace Ultimate_Team_API.Models
         public string CustomerEmail { get; set; }
         public DateTime CustomerCreated { get; set; }
         public bool Status { get; set; } = true;
+        public string GoogleId { get; set; }
     }
 }

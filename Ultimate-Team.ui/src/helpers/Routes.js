@@ -7,7 +7,6 @@ export default function Routes() {
     <div>
       <Switch>
         <Route path='/'component={() => <LandingPage />} />
-
       </Switch>
     </div>
   );

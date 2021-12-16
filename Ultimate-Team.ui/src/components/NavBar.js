@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import {
   Collapse,
   Navbar,
@@ -6,49 +7,44 @@ import {
   Nav,
   NavbarBrand,
   Button,
+  NavItem
 } from 'reactstrap';
-// import { createOrder } from '../helpers/data/OrderData';
 import { signInUser, signOutUser } from '../helpers/auth';
 
-const NavBar = () => {
+const NavBar = ({ user, setUser }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  // const [orders, setOrders] = useState({
-  //   totalCost: '',
-  //   paymentId: null,
-  //   completed: false,
-  // });
-
-  // useEffect(() => {
-  //   createOrder(orders).then((response) => setOrders(response));
-  // }, []);
-  // console.warn(orders);
   const toggle = () => setIsOpen(!isOpen);
 
   return (
     <div>
-      <Navbar className='navigation' light expand='md'>
-        <NavbarBrand href='/'>
+      <Navbar className="nav" light expand="md">
+        <NavbarBrand href="/">
         </NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
-          <Nav className='mr-auto' navbar>
-          </Nav>
+          <Nav className="mr-auto" navbar>
+            <NavItem>
+            </NavItem>
+          </Nav><div className='auth-btn-container'>
+                {
+                  // eslint-disable-next-line no-nested-ternary
+                  user
+                    ? <NavItem className='nav-cart-signout'>
+                        <Button className="signOut" onClick={signOutUser}>Sign Out</Button>
+                      </NavItem>
+                    : <Button className="signIn" onClick={() => signInUser(setUser)}>Sign In</Button>
+                }
+              </div>
         </Collapse>
-          <>
-              <>
-                <Button color='warning' outline onClick={signOutUser}>
-                  Sign Out
-                </Button>
-              </>
-              <Button color='primary' onClick={signInUser}>
-                Sign In
-              </Button>
-          </>
-
       </Navbar>
     </div>
   );
+};
+
+NavBar.propTypes = {
+  user: PropTypes.any,
+  setUser: PropTypes.func
 };
 
 export default NavBar;

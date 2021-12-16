@@ -51,14 +51,24 @@ namespace Ultimate_Team_API.Data_Access
 
             using var db = new SqlConnection(_connectionString);
 
-            var sql = @"insert into users(FirstName, LastName, CustomerEmail, Status)
+            var sql = @"insert into users(FirstName, LastName, CustomerEmail, Status, GoogleId)
                         output inserted.Id
-                        values (@FirstName, @LastName, @CustomerEmail, @Status)";
+                        values (@FirstName, @LastName, @CustomerEmail, @Status, @GoogleId)";
 
             var id = db.ExecuteScalar<Guid>(sql, newUser);
 
 
             newUser.Id = id;
+
+        }
+
+        internal User GetUserByGoogleId(string googleId)
+        {
+            using var db = new SqlConnection(_connectionString);
+            var sql = @"SELECT * FROM Users
+                        WHERE googleId = @googleId";
+            var user = db.QuerySingleOrDefault<User>(sql, new { googleId });
+            return user;
 
         }
 
