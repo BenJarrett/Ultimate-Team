@@ -9,4 +9,8 @@ const firebaseConfig = {
   measurementId: process.env.REACT_APP_MEASUREMENT_ID,
 };
 
-export default firebaseConfig;
+const sqlConfig = {
+  sqlDatabaseURL: process.env.REACT_APP_SQL_DATABASE_URL,
+};
+
+export { firebaseConfig, sqlConfig };
