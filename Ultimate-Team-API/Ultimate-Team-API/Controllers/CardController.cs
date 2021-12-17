@@ -40,6 +40,13 @@ namespace Ultimate_Team_API.Controllers
             return Ok(_repo.GetCardsByUserId(id));
         }
 
+        // Get User's Cards by TeamId//
+        [HttpGet("user/team/{id}")]
+        public IActionResult GetAllUsersCardsByTeam(string id)
+        {
+            return Ok(_repo.GetUsersCardsByTeamId(id));
+        }
+
         // Get A Card by Card Id //
         [HttpGet("{id}")]
         public IActionResult GetASingleCard(string id)

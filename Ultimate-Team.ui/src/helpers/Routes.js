@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import EasternTeamsView from '../views/EasternTeamView';
+import EasternTeamsView from '../views/teamViews/EasternTeamView';
 import LandingPage from '../views/LandingPage';
-import WesternTeamsView from '../views/WesternTeamView';
+import WesternTeamsView from '../views/teamViews/WesternTeamView';
 
 export default function Routes() {
   return (

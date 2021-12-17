@@ -1,11 +1,13 @@
 ﻿using Dapper;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Ultimate_Team_API.Models;
+using Ultimate_Team_API.Models.ExternalPlayerAPI;
 
 namespace Ultimate_Team_API.Data_Access
 {
@@ -86,5 +88,33 @@ namespace Ultimate_Team_API.Data_Access
 
             return cards;
         }
+        // Get Teams Cards of a Specific User B//
+        internal IEnumerable<Card> GetUsersCardsByTeamId(string teamId)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var client = new RestClient("http://data.nba.net/data/10s/prod/v1/2021");
+
+            var request = new RestRequest("players.json");
+
+            var response = client.Get<AllPlayersResponseData>(request);
+
+            var sql = @"Select c.*
+                From Cards c
+                    join Players p 
+                        on c.playerId = p.id
+                            join Teams t
+                                on p.teamId = t.id
+                                   join Users u
+                                       on c.userId = u.id
+                                         where u.id = @id";
+
+            var cards = db.Query<Card>(sql, new { id = teamId });
+
+            var apiPlayers = response.Data.league.standard;
+
+            return cards;
+        }
     }
+
 }

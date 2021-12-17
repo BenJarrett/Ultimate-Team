@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import TeamCard from '../components/TeamCard';
-import { getAllWesternConferenceTeams } from '../helpers/data/team/teamData';
+import TeamCard from '../../components/TeamCard';
+import { getAllWesternConferenceTeams } from '../../helpers/data/team/teamData';
 
 function WesternTeamsView() {
   const [wCTeam, setWcTeam] = useState([]);
