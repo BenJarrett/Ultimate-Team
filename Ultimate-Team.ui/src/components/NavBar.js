@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import {
   Collapse,
   Navbar,
@@ -20,12 +21,18 @@ const NavBar = ({ user, setUser }) => {
     <div>
       <Navbar className="nav" light expand="md">
         <NavbarBrand href="/">
+          <h1>Home</h1>
         </NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             <NavItem>
+              <Link className="nav-link" to="/western-conference-teams">Western Conference Teams</Link>
             </NavItem>
+            <NavItem>
+              <Link className="nav-link" to="/eastern-conference-teams">Eastern Conference Teams</Link>
+            </NavItem>
+
           </Nav><div className='auth-btn-container'>
                 {
                   // eslint-disable-next-line no-nested-ternary
