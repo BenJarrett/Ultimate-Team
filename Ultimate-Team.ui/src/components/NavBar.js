@@ -32,6 +32,9 @@ const NavBar = ({ user, setUser }) => {
             <NavItem>
               <Link className="nav-link" to="/eastern-conference-teams">Eastern Conference Teams</Link>
             </NavItem>
+            <NavItem>
+              <Link className="nav-link" to={`/unopened-packs/${user?.id}`}>Packs</Link>
+            </NavItem>
 
           </Nav><div className='auth-btn-container'>
                 {

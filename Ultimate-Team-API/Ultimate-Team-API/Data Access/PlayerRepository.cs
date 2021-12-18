@@ -53,7 +53,7 @@ namespace Ultimate_Team_API.Data_Access
         } 
 
         // Get Single Player by Id //
-        internal object GetPlayerById(string id)
+        internal Player GetPlayerById(string id)
         {
             using var db = new SqlConnection(_connectionString);
 

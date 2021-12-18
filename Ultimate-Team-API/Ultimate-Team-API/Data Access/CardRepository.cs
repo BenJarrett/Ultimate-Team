@@ -88,7 +88,7 @@ namespace Ultimate_Team_API.Data_Access
 
             return cards;
         }
-        // Get Teams Cards of a Specific User B//
+        // Get Teams Cards of a Specific User //
         internal IEnumerable<Card> GetUsersCardsByTeamId(string teamId)
         {
             using var db = new SqlConnection(_connectionString);
@@ -101,7 +101,7 @@ namespace Ultimate_Team_API.Data_Access
 
             var sql = @"Select c.*
                 From Cards c
-                    join Players p 
+                    join Players p
                         on c.playerId = p.id
                             join Teams t
                                 on p.teamId = t.id

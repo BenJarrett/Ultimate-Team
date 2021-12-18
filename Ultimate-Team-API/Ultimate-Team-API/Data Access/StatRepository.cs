@@ -15,10 +15,12 @@ namespace Ultimate_Team_API.Data_Access
     public class StatRepository
     {
         readonly string _connectionString;
+        private readonly PlayerRepository _playerRepo;
 
-        public StatRepository(IConfiguration config)
+        public StatRepository(IConfiguration config, PlayerRepository playerRepo)
         {
             _connectionString = config.GetConnectionString("UltimateTeam");
+            _playerRepo = playerRepo;
         }
 
         // Get All Players' Stats //
@@ -62,7 +64,7 @@ namespace Ultimate_Team_API.Data_Access
         }
 
         // Get Player's Stats //
-        internal Stat GetStatsByPlayerId(string playerId)
+        internal Player GetStatsByPlayerId(string playerId)
         {
             using var db = new SqlConnection(_connectionString);
 
@@ -70,13 +72,9 @@ namespace Ultimate_Team_API.Data_Access
 
             try
             {
-                var sql = @"Select *
-                From Stats
-                WHERE playerId = @playerId";
+                var player = _playerRepo.GetPlayerById(playerId);
 
-                var playersStats = db.Query<Player>(sql, new { playerId = playerId }); ;
-
-                var request = new RestRequest($"players/{playerId}_profile.json");
+                var request = new RestRequest($"players/{player.PlayerApiId}_profile.json");
 
 
                 var response = client.Get<AllStatsResponseData>(request);
@@ -103,7 +101,9 @@ namespace Ultimate_Team_API.Data_Access
                 //stat.GamesPlayed = matchingApiStat.gamesPlayed;
                 //}
 
-                return newStat;
+                player.Stats = newStat;
+
+                return player;
             }
 
             catch (Exception)

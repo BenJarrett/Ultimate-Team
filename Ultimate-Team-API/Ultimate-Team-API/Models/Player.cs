@@ -20,6 +20,7 @@ namespace Ultimate_Team_API.Models
         public string YearsPro { get; set; }
         public string Position { get; set; }
         public string CardId { get; set; }
+        public Stat Stats { get; set; }
         public string PlayerApiId { get; set; }
     }
 
