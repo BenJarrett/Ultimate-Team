@@ -89,7 +89,7 @@ namespace Ultimate_Team_API.Data_Access
             return cards;
         }
         // Get Teams Cards of a Specific User //
-        internal IEnumerable<Card> GetUsersCardsByTeamId(string teamId)
+        internal IEnumerable<Card> GetUsersCardsByTeamId(Guid userId, string teamId)
         {
             using var db = new SqlConnection(_connectionString);
 
@@ -107,9 +107,9 @@ namespace Ultimate_Team_API.Data_Access
                                 on p.teamId = t.id
                                    join Users u
                                        on c.userId = u.id
-                                         where u.id = @id";
-
-            var cards = db.Query<Card>(sql, new { id = teamId });
+                                         where u.id = @id
+                                            and t.id = @tId";
+            var cards = db.Query<Card>(sql, new { id = userId, tId = teamId });
 
             var apiPlayers = response.Data.league.standard;
 

@@ -5,9 +5,16 @@ import {
   CardBody,
   CardTitle,
   CardImg,
+  Button
 } from 'reactstrap';
+import { useHistory } from 'react-router-dom';
 
 function TeamCard({ ...wCTeamInfo }) {
+  const history = useHistory();
+
+  const handleClick = () => {
+    history.push(`/teamCards/${wCTeamInfo.id}`);
+  };
   return (
     <div>
       <Card>
@@ -29,6 +36,7 @@ function TeamCard({ ...wCTeamInfo }) {
         {wCTeamInfo.conference}
         </small>
       </CardText>
+      <Button onClick={() => handleClick() }>View Cards</Button>
     </CardBody>
   </Card>
     </div>
