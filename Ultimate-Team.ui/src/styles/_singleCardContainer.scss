@@ -1,4 +1,4 @@
-.teamsCardsContainer {
+.singleCardContainer {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
@@ -7,10 +7,10 @@
     margin: 30px;
   }
   .card {
-    width: 200px;
+    width: 150px;
   }
   .card img {
-    width: 200px; 
+    width: 150px; 
   }
   img {
     width: 225px; 

@@ -22,7 +22,7 @@ function AllCardsCard({ ...allCardsTeamInfo }) {
       {allCardsTeamInfo.tier}
       </CardTitle>
     </CardBody>
-    <Button onClick={() => allCardsTeamInfo.setCurrentCardId(allCardsTeamInfo.id)}>View Cards</Button>
+    <Button onClick={() => allCardsTeamInfo.setCurrentCardId(allCardsTeamInfo.id)}>Select Card</Button>
     </Card>
     </div>
   );

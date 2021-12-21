@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Col, Container, Row } from 'reactstrap';
+import {
+  Card, CardBody, CardImg, CardTitle, Col, Container, Row
+} from 'reactstrap';
 import { GetAllUsersCardsForTeam, GetSingleCard } from '../../helpers/data/card/cardData';
 import AllCardsCard from '../../components/AllCardsCard';
 
@@ -12,8 +14,6 @@ function AllTeamsCardsView({ user }) {
 
   const { id } = useParams();
 
-  console.warn(id);
-  console.warn(user.id);
   useEffect(() => {
     GetAllUsersCardsForTeam(user.id, id).then((response) => setAllTeamCards(response));
   }, []);
@@ -28,9 +28,23 @@ function AllTeamsCardsView({ user }) {
         <Row>
           <Col md={4} className='teamCards'>
             <Row>
-              <Col>
+              <Col className='singleCardContainer'>
                 <h1>Card</h1>
-                  <img src={singleCard.cardImage} />
+                <div>
+                  <Card>
+                    <CardImg
+                      alt="Card image cap"
+                      src={singleCard.cardImage}
+                      top
+                      width="100%"
+                    />
+                  <CardBody>
+                    <CardTitle tag="h5">
+                    {singleCard.tier}
+                    </CardTitle>
+                  </CardBody>
+                  </Card>
+                </div>
               </Col>
               <Col>
                 <h1>Info</h1>
