@@ -1,6 +1,9 @@
 @import "~@fortawesome/fontawesome-free/css/all.min.css";
 @import 'variables';
+@import 'allTeamsCards';
+@import 'easternConferenceTeams';
+@import 'westernConferenceTeams';
 
 body {
-  background-color: $favColor;
+  background-color: rgb(223, 223, 223)!important;
 }

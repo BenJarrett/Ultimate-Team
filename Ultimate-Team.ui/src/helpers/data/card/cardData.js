@@ -7,4 +7,9 @@ const GetAllUsersCardsForTeam = (id, teamId) => new Promise((resolve, reject) =>
   axios.get(`${apiUrl}/card/user/team/${id}/${teamId}`).then((response) => resolve(response.data)).catch(reject);
 });
 
-export default GetAllUsersCardsForTeam;
+const GetSingleCard = (id) => new Promise((resolve, reject) => {
+  axios.get(`${apiUrl}/card/${id}`)
+    .then((response) => resolve(response))
+    .catch((error) => reject(error));
+});
+export { GetAllUsersCardsForTeam, GetSingleCard };

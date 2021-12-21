@@ -5,7 +5,8 @@ import {
   CardBody,
   CardTitle,
   CardImg,
-  Button
+  Button,
+  Container
 } from 'reactstrap';
 import { useHistory } from 'react-router-dom';
 
@@ -17,6 +18,7 @@ function TeamCard({ ...wCTeamInfo }) {
   };
   return (
     <div>
+      <Container>
       <Card>
     <CardImg
       alt="Card image cap"
@@ -39,6 +41,7 @@ function TeamCard({ ...wCTeamInfo }) {
       <Button onClick={() => handleClick() }>View Cards</Button>
     </CardBody>
   </Card>
+  </Container>
     </div>
   );
 }

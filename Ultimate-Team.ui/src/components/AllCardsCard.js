@@ -4,6 +4,7 @@ import {
   CardBody,
   CardTitle,
   CardImg,
+  // Button
 } from 'reactstrap';
 
 function AllCardsCard({ ...allCardsTeamInfo }) {
@@ -18,10 +19,11 @@ function AllCardsCard({ ...allCardsTeamInfo }) {
     />
     <CardBody>
       <CardTitle tag="h5">
-      {allCardsTeamInfo.tier}
+      {allCardsTeamInfo.stier}
       </CardTitle>
     </CardBody>
-  </Card>
+    {/* <Button onClick={() => handleClick() }>View Cards</Button> */}
+    </Card>
     </div>
   );
 }

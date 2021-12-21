@@ -1,0 +1,16 @@
+.teamsCardsContainer {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  .card {
+    margin: 30px;
+  }
+  .card img {
+    width: 225px; 
+  }
+
+}
+
+.teamCards {
+  border: 2px black solid;
+}
