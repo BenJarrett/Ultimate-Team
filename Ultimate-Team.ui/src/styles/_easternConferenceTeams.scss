@@ -2,10 +2,12 @@
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
+  text-align: center;
   .card {
-    margin: 30px;
+    margin: 125px;
+    padding: 30px;
   }
   .card img {
-    width: 125px; 
+    width: 200px; 
   }
 }

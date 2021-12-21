@@ -4,7 +4,7 @@ import {
   CardBody,
   CardTitle,
   CardImg,
-  // Button
+  Button
 } from 'reactstrap';
 
 function AllCardsCard({ ...allCardsTeamInfo }) {
@@ -19,10 +19,10 @@ function AllCardsCard({ ...allCardsTeamInfo }) {
     />
     <CardBody>
       <CardTitle tag="h5">
-      {allCardsTeamInfo.stier}
+      {allCardsTeamInfo.tier}
       </CardTitle>
     </CardBody>
-    {/* <Button onClick={() => handleClick() }>View Cards</Button> */}
+    <Button onClick={() => allCardsTeamInfo.setCurrentCardId(allCardsTeamInfo.id)}>View Cards</Button>
     </Card>
     </div>
   );
