@@ -107,8 +107,8 @@ namespace Ultimate_Team_API.Data_Access
                                 on p.teamId = t.id
                                    join Users u
                                        on c.userId = u.id
-                                         where u.id = @id
-                                            and t.id = @tId";
+                                          where u.id = @id
+                                             and t.id = @tId";
             var cards = db.Query<Card>(sql, new { id = userId, tId = teamId });
 
             var apiPlayers = response.Data.league.standard;

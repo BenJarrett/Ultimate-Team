@@ -2,15 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {
-  Card, CardBody, CardImg, CardTitle, Col, Container, Row
+  Card, CardBody, CardImg, CardTitle, Col, Container, Row, Button
 } from 'reactstrap';
 import { GetAllUsersCardsForTeam, GetSingleCard } from '../../helpers/data/card/cardData';
-import AllCardsCard from '../../components/AllCardsCard';
+// import AllCardsCard from '../../components/AllCardsCard';
+import GetPlayersStats from '../../helpers/data/stat/statData';
 
 function AllTeamsCardsView({ user }) {
   const [allTeamCards, setAllTeamCards] = useState([]);
-  const [currentCardId, setCurrentCardId] = useState();
-  const [singleCard, setSingleCard] = useState({});
+  // const [currentCardId, setCurrentCardId] = useState();
+  const [singleCard, setSingleCard] = useState({ });
+  // const [currentPlayerId, setCurrentPlayerId] = useState();
+  const [playerInfo, setPlayerInfo] = useState({ stats: { } });
 
   const { id } = useParams();
 
@@ -18,10 +21,17 @@ function AllTeamsCardsView({ user }) {
     GetAllUsersCardsForTeam(user.id, id).then((response) => setAllTeamCards(response));
   }, []);
 
-  useEffect(() => {
-    GetSingleCard(currentCardId).then((response) => setSingleCard(response));
-  }, [currentCardId]);
+  // useEffect(() => {
+  //   GetSingleCard(currentCardId).then((response) => setSingleCard(response));
+  //   GetPlayersStats(currentPlayerId).then((response) => setPlayerInfo(response));
+  // }, [currentCardId, currentPlayerId]);
 
+  const handleClick = (cardId, playerId) => {
+    GetSingleCard(cardId).then((response) => setSingleCard(response));
+    GetPlayersStats(playerId).then((response) => setPlayerInfo(response));
+  };
+
+  console.warn(playerInfo);
   return (
     <div>
       <Container>
@@ -40,7 +50,7 @@ function AllTeamsCardsView({ user }) {
                     />
                   <CardBody>
                     <CardTitle tag="h5">
-                    {singleCard.tier}
+                    <h6> {playerInfo.firstName} {playerInfo.lastName} </h6>
                     </CardTitle>
                   </CardBody>
                   </Card>
@@ -48,12 +58,17 @@ function AllTeamsCardsView({ user }) {
               </Col>
               <Col>
                 <h1>Info</h1>
-                  {singleCard.info}
+                 <h6> Position - {playerInfo.position}</h6>
+                 <h6> Height - {playerInfo.height}</h6>
+                 <h6> Weight - {playerInfo.weight}</h6>
+                 <h6> Years Pro - {playerInfo.yearsPro}</h6>
+
               </Col>
             </Row>
             <Row>
               <Col>
                 <h1>Stats</h1>
+                <h4> {playerInfo.stats.apg}</h4>
               </Col>
             </Row>
           </Col>
@@ -61,11 +76,22 @@ function AllTeamsCardsView({ user }) {
         <h1>Your Cards</h1>
           <div className='teamsCardsContainer'>
         {allTeamCards.map((allCardsTeamInfo) => (
-          <AllCardsCard
-          key={allCardsTeamInfo.id}
-          setCurrentCardId={setCurrentCardId}
-          {...allCardsTeamInfo}
-          />
+                <Card key={allCardsTeamInfo.id}
+                >
+                <CardImg
+                  alt="Card image cap"
+                  src={allCardsTeamInfo.cardImage}
+                  top
+                  width="100%"
+                />
+                <CardBody>
+                  <CardTitle tag="h5">
+                  {allCardsTeamInfo.tier}
+                  </CardTitle>
+                </CardBody>
+                <Button onClick={() => handleClick(allCardsTeamInfo.id, allCardsTeamInfo.playerId)} >Select Card</Button>
+                {/* <Button onClick={() => allCardsTeamInfo.setCurrentPlayerId(allCardsTeamInfo.playerId)} >Select Card</Button> */}
+                  </Card>
         ))}
       </div>
           </Col>
