@@ -5,6 +5,7 @@ import {
   CardBody,
   CardTitle,
   CardImg,
+  Button
 } from 'reactstrap';
 
 function SinglePackCard({ ...packInfo }) {
@@ -19,13 +20,13 @@ function SinglePackCard({ ...packInfo }) {
     />
     <CardBody>
       <CardTitle tag="h5">
-      {packInfo.packName}
+      {packInfo.packName} Pack
       </CardTitle>
       <CardText>
-      {packInfo.packType}
       </CardText>
     </CardBody>
   </Card>
+  <Button>Open Pack</Button>
     </div>
   );
 }

@@ -1,9 +1,9 @@
-.teamsCardsContainer {
+.packsContainer {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
   text-align: center;
-  .card {
+    .card {
     margin: 30px;
   }
   .card {
@@ -15,8 +15,4 @@
   img {
     width: 225px; 
   }
-}
-
-.container {
-  max-width: 1600px!important;
 }

@@ -38,37 +38,45 @@ function AllTeamsCardsView({ user }) {
         <Row>
           <Col md={4} className='teamCards'>
             <Row>
-              <Col className='singleCardContainer'>
-                <h1>Card</h1>
+              <Col className='singleCardContainer' md={7}>
+                <h5>
+                  {playerInfo.firstName} {playerInfo.lastName}
+                </h5>
                 <div>
                   <Card>
                     <CardImg
-                      alt="Card image cap"
+                      alt="Select A Card"
                       src={singleCard.cardImage}
                       top
                       width="100%"
                     />
                   <CardBody>
-                    <CardTitle tag="h5">
-                    <h6> {playerInfo.firstName} {playerInfo.lastName} </h6>
-                    </CardTitle>
                   </CardBody>
                   </Card>
                 </div>
               </Col>
-              <Col>
-                <h1>Info</h1>
-                 <h6> Position - {playerInfo.position}</h6>
-                 <h6> Height - {playerInfo.height}</h6>
-                 <h6> Weight - {playerInfo.weight}</h6>
-                 <h6> Years Pro - {playerInfo.yearsPro}</h6>
+              <Col md={5} >
+                <h5>Player Info</h5>
+                 <div> Position | {playerInfo.position} </div>
+                 <div> Height | {playerInfo.height} </div>
+                 <div> Weight | {playerInfo.weight} </div>
+                 <div> Years Pro | {playerInfo.yearsPro} </div>
 
               </Col>
             </Row>
             <Row>
-              <Col>
-                <h1>Stats</h1>
-                <h4> {playerInfo.stats.apg}</h4>
+              <Col md={12}>
+                <h5>Current Stats</h5>
+                <div>
+                <div> PPG | {playerInfo.stats.ppg} </div>
+                <div> APG | {playerInfo.stats.apg} </div>
+                <div> RPG | {playerInfo.stats.rpg} </div>
+                <div> SPG | {playerInfo.stats.spg} </div>
+                <div> BPG | {playerInfo.stats.bpg} </div>
+                <div> MPG | {playerInfo.stats.mpg} </div>
+                <div> Games Played | {playerInfo.stats.gamesPlayed} </div>
+
+                </div>
               </Col>
             </Row>
           </Col>
@@ -79,7 +87,7 @@ function AllTeamsCardsView({ user }) {
                 <Card key={allCardsTeamInfo.id}
                 >
                 <CardImg
-                  alt="Card image cap"
+                  alt="Select A Card"
                   src={allCardsTeamInfo.cardImage}
                   top
                   width="100%"

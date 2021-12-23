@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   Card,
   CardText,
@@ -46,4 +47,7 @@ function TeamCard({ ...wCTeamInfo }) {
   );
 }
 
+TeamCard.propTypes = {
+  wCTeamInfo: PropTypes.array
+};
 export default TeamCard;

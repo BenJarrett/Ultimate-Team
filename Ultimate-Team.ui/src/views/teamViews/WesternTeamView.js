@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import TeamCard from '../../components/TeamCard';
 import { getAllWesternConferenceTeams } from '../../helpers/data/team/teamData';
 
@@ -23,4 +24,7 @@ function WesternTeamsView() {
   );
 }
 
+WesternTeamsView.propTypes = {
+  wCTeamInfo: PropTypes.array
+};
 export default WesternTeamsView;

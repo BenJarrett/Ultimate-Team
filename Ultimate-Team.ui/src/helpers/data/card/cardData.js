@@ -12,4 +12,9 @@ const GetSingleCard = (id) => new Promise((resolve, reject) => {
     .then((response) => resolve(response.data))
     .catch((error) => reject(error));
 });
-export { GetAllUsersCardsForTeam, GetSingleCard };
+
+const GetPacksCards = (id) => new Promise((resolve, reject) => {
+  axios.get(`${apiUrl}/card/pack/${id}`).then((response) => resolve(response.data)).catch(reject);
+});
+
+export { GetAllUsersCardsForTeam, GetSingleCard, GetPacksCards };
