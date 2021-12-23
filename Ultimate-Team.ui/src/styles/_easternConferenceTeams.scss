@@ -4,10 +4,25 @@
   justify-content: center;
   text-align: center;
   .card {
-    margin: 125px;
-    padding: 30px;
+    margin: 1px;
+    padding: 25px;
+    padding-bottom: 0px;
   }
   .card img {
-    width: 200px; 
+    height: 150px;
+    width: 200px;
+    object-fit: cover;
+  }
+  .card-title {
+    margin: 0px;
+  }
+  .card-text {
+    margin: 0px;
+
+  }
+
+  .btn {
+    margin-bottom: 0px;
+    margin-top: 10px;
   }
 }

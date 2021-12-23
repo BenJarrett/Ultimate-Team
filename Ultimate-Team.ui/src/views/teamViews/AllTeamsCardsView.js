@@ -50,8 +50,6 @@ function AllTeamsCardsView({ user }) {
                       top
                       width="100%"
                     />
-                  <CardBody>
-                  </CardBody>
                   </Card>
                 </div>
               </Col>
@@ -84,7 +82,8 @@ function AllTeamsCardsView({ user }) {
         <h1>Your Cards</h1>
           <div className='teamsCardsContainer'>
         {allTeamCards.map((allCardsTeamInfo) => (
-                <Card key={allCardsTeamInfo.id}
+          <div key={allCardsTeamInfo.id}>
+                <Card className='playerCard'
                 >
                 <CardImg
                   alt="Select A Card"
@@ -97,9 +96,9 @@ function AllTeamsCardsView({ user }) {
                   {allCardsTeamInfo.tier}
                   </CardTitle>
                 </CardBody>
-                <Button onClick={() => handleClick(allCardsTeamInfo.id, allCardsTeamInfo.playerId)} >Select Card</Button>
-                {/* <Button onClick={() => allCardsTeamInfo.setCurrentPlayerId(allCardsTeamInfo.playerId)} >Select Card</Button> */}
                   </Card>
+                  <Button onClick={() => handleClick(allCardsTeamInfo.id, allCardsTeamInfo.playerId)} >Select Card</Button>
+                  </div>
         ))}
       </div>
           </Col>

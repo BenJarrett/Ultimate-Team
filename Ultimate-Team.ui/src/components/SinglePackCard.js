@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   Card,
   CardText,
@@ -7,8 +8,15 @@ import {
   CardImg,
   Button
 } from 'reactstrap';
+import { useHistory } from 'react-router-dom';
 
 function SinglePackCard({ ...packInfo }) {
+  const history = useHistory();
+
+  const handleClick = () => {
+    history.push(`/packCards/${packInfo.id}`);
+  };
+
   return (
     <div>
       <Card>
@@ -26,9 +34,12 @@ function SinglePackCard({ ...packInfo }) {
       </CardText>
     </CardBody>
   </Card>
-  <Button>Open Pack</Button>
+  <Button onClick={() => handleClick() }>Open Pack</Button>
     </div>
   );
 }
 
+SinglePackCard.propTypes = {
+  wCTeamIpackInfonfo: PropTypes.array
+};
 export default SinglePackCard;

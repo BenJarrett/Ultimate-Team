@@ -27,6 +27,7 @@ function UnopenedPackView() {
 }
 
 UnopenedPackView.propTypes = {
-  user: PropTypes.any
+  user: PropTypes.any,
+  packInfo: PropTypes.array
 };
 export default UnopenedPackView;

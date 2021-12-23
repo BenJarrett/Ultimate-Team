@@ -17,6 +17,8 @@ function TeamCard({ ...wCTeamInfo }) {
   const handleClick = () => {
     history.push(`/teamCards/${wCTeamInfo.id}`);
   };
+
+  console.warn(wCTeamInfo);
   return (
     <div>
       <Container>

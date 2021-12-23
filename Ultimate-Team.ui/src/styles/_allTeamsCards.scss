@@ -7,10 +7,13 @@
     margin: 30px;
   }
   .card {
-    width: 200px;
+    width: 207px;
   }
   .card img {
-    width: 200px; 
+    height: 250px;
+    width: 200px;
+    object-fit: cover;
+    
   }
   img {
     width: 225px; 
@@ -19,4 +22,8 @@
 
 .container {
   max-width: 1600px!important;
+}
+
+.playerCard {
+  border: 4px green solid!important;
 }
