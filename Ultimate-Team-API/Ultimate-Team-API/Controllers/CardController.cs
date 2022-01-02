@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Ultimate_Team_API.Data_Access;
+using Ultimate_Team_API.Models;
 
 namespace Ultimate_Team_API.Controllers
 {
@@ -68,6 +69,16 @@ namespace Ultimate_Team_API.Controllers
             return Ok(_repo.GetCardsByPackId(id));
         }
 
+        [HttpPut("{id}")]
+        public IActionResult AssignCardToUser(Guid id, Card card)
+        {
+            var cardToupdate = _repo.GetCardsByPackId(id);
+
+            if (cardToupdate == null) NotFound($"Could Not find Cards with the pack id {id} to assign ");
+
+            var updatedCards = _repo.AssignToUser(id, card);
+            return Ok(updatedCards);
+        }
 
     }
 }

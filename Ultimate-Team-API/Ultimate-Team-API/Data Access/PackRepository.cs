@@ -30,7 +30,7 @@ namespace Ultimate_Team_API.Data_Access
         }
 
         // Get A Single Pack by PAck Id
-        internal Pack GetAPackByCardId(Guid id)
+        internal Pack GetAPackByPackId(Guid id)
         {
             using var db = new SqlConnection(_connectionString);
 
@@ -56,7 +56,7 @@ namespace Ultimate_Team_API.Data_Access
                             join Users u
                                 on c.userId = u.id
                                     where u.id = @id";
-
+             
             var packs = db.Query<Pack>(sql, new { id = userId });
 
             return packs;
@@ -81,7 +81,28 @@ namespace Ultimate_Team_API.Data_Access
             return packs;
         }
 
-        // Get User's Opened Packs //
+        internal Pack UpdateStatus(Guid id, Pack pack)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var sql = @"update Packs set
+                                        Status = 1 
+
+                                     output inserted.Id
+                                     Where Id = @id";
+
+            pack.Id = id;
+
+            var parameters = new
+            {
+                Status = pack.Status
+            };
+
+            var openedPack = db.QueryFirstOrDefault<Pack>(sql, parameters);
+            return openedPack;
+        }
+
+        //Get User's Opened Packs 
         internal IEnumerable<Pack> GetUsersOpenedPacksByUserId(Guid userId)
         {
             using var db = new SqlConnection(_connectionString);

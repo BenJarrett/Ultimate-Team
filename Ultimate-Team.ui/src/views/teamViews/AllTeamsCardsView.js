@@ -21,11 +21,6 @@ function AllTeamsCardsView({ user }) {
     GetAllUsersCardsForTeam(user.id, id).then((response) => setAllTeamCards(response));
   }, []);
 
-  // useEffect(() => {
-  //   GetSingleCard(currentCardId).then((response) => setSingleCard(response));
-  //   GetPlayersStats(currentPlayerId).then((response) => setPlayerInfo(response));
-  // }, [currentCardId, currentPlayerId]);
-
   const handleClick = (cardId, playerId) => {
     GetSingleCard(cardId).then((response) => setSingleCard(response));
     GetPlayersStats(playerId).then((response) => setPlayerInfo(response));
@@ -36,7 +31,8 @@ function AllTeamsCardsView({ user }) {
     <div>
       <Container>
         <Row>
-          <Col md={4} className='teamCards'>
+          { !singleCard
+          && <Col md={4} className='teamCards'>
             <Row>
               <Col className='singleCardContainer' md={7}>
                 <h5>
@@ -78,6 +74,7 @@ function AllTeamsCardsView({ user }) {
               </Col>
             </Row>
           </Col>
+          }
           <Col md={8}>
         <h1>Your Cards</h1>
           <div className='teamsCardsContainer'>

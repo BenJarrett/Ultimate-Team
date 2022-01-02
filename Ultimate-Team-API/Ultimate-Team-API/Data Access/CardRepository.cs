@@ -88,6 +88,22 @@ namespace Ultimate_Team_API.Data_Access
 
             return cards;
         }
+
+        internal Card AssignToUser(Guid id, Card card)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var sql = @"update Cards set 
+                        User.Id = @userId
+
+                    output inserted.Id
+                    Where Id = @id";
+
+            card.Id = id;
+        }
+
+        
+
         // Get Teams Cards of a Specific User //
         internal IEnumerable<Card> GetUsersCardsByTeamId(Guid userId, string teamId)
         {

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Ultimate_Team_API.Data_Access;
+using Ultimate_Team_API.Models;
 
 namespace Ultimate_Team_API.Controllers
 {
@@ -13,18 +14,22 @@ namespace Ultimate_Team_API.Controllers
     public class PackController : ControllerBase
     {
 
-        PackRepository _repo;
+        PackRepository _packRepository;
+        CardRepository _cardRepository;
+        UserRepository _userRepository;
 
-        public PackController(PackRepository repo)
+        public PackController(PackRepository packRepo, CardRepository cardRepo, UserRepository userRepo)
         {
-            _repo = repo;
+            _packRepository = packRepo;
+            _cardRepository = cardRepo;
+            _userRepository = userRepo;
         }
 
         // Get All Packs //
         [HttpGet]
         public IActionResult GetAllPacks()
         {
-            return Ok(_repo.GetAll());
+            return Ok(_packRepository.GetAll());
         }
 
 
@@ -32,7 +37,7 @@ namespace Ultimate_Team_API.Controllers
         [HttpGet("{id}")]
         public IActionResult GetASinglePack(Guid id)
         {
-            var card = _repo.GetAPackByCardId(id);
+            var card = _packRepository.GetAPackByPackId(id);
 
             if (card == null)
             {
@@ -46,7 +51,7 @@ namespace Ultimate_Team_API.Controllers
         [HttpGet("user/{id}")]
         public IActionResult GetUsersPacks(Guid id)
         {
-            return Ok(_repo.GetUsersPacksByUserId(id));
+            return Ok(_packRepository.GetUsersPacksByUserId(id));
         }
 
         // Get User's Unopened Packs //
@@ -54,15 +59,28 @@ namespace Ultimate_Team_API.Controllers
         [HttpGet("unopened/user/{id}")]
         public IActionResult GetUsersUnopenedPacks(Guid id)
         {
-            return Ok(_repo.GetUsersUnopenedPacksByUserId(id));
+            return Ok(_packRepository.GetUsersUnopenedPacksByUserId(id));
         }
 
-        // Get User's Opened Packs //
+         //Get User's Opened Packs //
 
         [HttpGet("opened/user/{id}")]
         public IActionResult GetUsersOpenedPacks(Guid id)
         {
-            return Ok(_repo.GetUsersOpenedPacksByUserId(id));
+            return Ok(_packRepository.GetUsersOpenedPacksByUserId(id));
         }
+
+        [HttpPut("{id}")]
+        public IActionResult OpenPack(Guid id, Pack pack)
+        {
+            var packToUpdate = _packRepository.GetAPackByPackId(id);
+
+            if (packToUpdate == null) NotFound($"Could Not find Pack with the id {id} to update");
+
+            var updatedPack = _packRepository.UpdateStatus(id, pack);
+            return Ok(updatedPack);
+        }
+
+
     }
 }
