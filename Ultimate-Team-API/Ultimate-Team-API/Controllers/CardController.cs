@@ -14,10 +14,12 @@ namespace Ultimate_Team_API.Controllers
     {
 
         CardRepository _repo;
+        UserRepository _userRepo;
 
-        public CardController(CardRepository repo)
+        public CardController(CardRepository repo, UserRepository userRepo)
         {
             _repo = repo;
+            _userRepo = userRepo;
         }
 
         // Get All Cards //
@@ -69,16 +71,17 @@ namespace Ultimate_Team_API.Controllers
             return Ok(_repo.GetCardsByPackId(id));
         }
 
-        [HttpPut("{id}")]
-        public IActionResult AssignCardToUser(Guid id, Card card)
-        {
-            var cardToupdate = _repo.GetCardsByPackId(id);
+        //[HttpPut("{id}")]
+        //public IActionResult AssignCardToUser(Guid id, Card card)
+        //{
+        //    var cardToupdate = _repo.GetCardsByPackId(id);
+        //    var userToAssign = _userRepo.GetSingleUserById(id);
 
-            if (cardToupdate == null) NotFound($"Could Not find Cards with the pack id {id} to assign ");
+        //    if (cardToupdate == null) NotFound($"Could Not find Cards with the pack id {id} to assign ");
 
-            var updatedCards = _repo.AssignToUser(id, card);
-            return Ok(updatedCards);
-        }
+        //    //var updatedCards = _repo.AssignToUser(id, card);
+        //    return Ok(updatedCards);
+        //}
 
     }
 }

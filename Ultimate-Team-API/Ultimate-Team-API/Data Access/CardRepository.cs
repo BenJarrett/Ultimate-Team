@@ -60,6 +60,11 @@ namespace Ultimate_Team_API.Data_Access
             return card;
         }
 
+        internal object GetUsersCardsByTeamIdLength(string teamId)
+        {
+            throw new NotImplementedException();
+        }
+
         // Get All Cards In A Pack by Pack Id //
         internal IEnumerable<Card> GetCardsByPackId(Guid packId)
         {
@@ -89,18 +94,18 @@ namespace Ultimate_Team_API.Data_Access
             return cards;
         }
 
-        internal Card AssignToUser(Guid id, Card card)
-        {
-            using var db = new SqlConnection(_connectionString);
+        //internal Card AssignToUser(Guid id, Card card)
+        //{
+        //    using var db = new SqlConnection(_connectionString);
 
-            var sql = @"update Cards set 
-                        User.Id = @userId
+        //    var sql = @"update Cards set 
+        //                User.Id = @userId
 
-                    output inserted.Id
-                    Where Id = @id";
+        //            output inserted.Id
+        //            Where Id = @id";
 
-            card.Id = id;
-        }
+        //    card.Id = id;
+        //}
 
         
 

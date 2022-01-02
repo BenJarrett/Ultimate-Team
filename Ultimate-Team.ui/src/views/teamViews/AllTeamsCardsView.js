@@ -21,18 +21,17 @@ function AllTeamsCardsView({ user }) {
     GetAllUsersCardsForTeam(user.id, id).then((response) => setAllTeamCards(response));
   }, []);
 
+  console.warn(allTeamCards.length);
+
   const handleClick = (cardId, playerId) => {
     GetSingleCard(cardId).then((response) => setSingleCard(response));
     GetPlayersStats(playerId).then((response) => setPlayerInfo(response));
   };
-
-  console.warn(playerInfo);
   return (
     <div>
       <Container>
         <Row>
-          { !singleCard
-          && <Col md={4} className='teamCards'>
+          <Col md={4} className='teamCards'>
             <Row>
               <Col className='singleCardContainer' md={7}>
                 <h5>
@@ -51,10 +50,10 @@ function AllTeamsCardsView({ user }) {
               </Col>
               <Col md={5} >
                 <h5>Player Info</h5>
-                 <div> Position | {playerInfo.position} </div>
-                 <div> Height | {playerInfo.height} </div>
-                 <div> Weight | {playerInfo.weight} </div>
-                 <div> Years Pro | {playerInfo.yearsPro} </div>
+                 <div> Position - {playerInfo.position} </div>
+                 <div> Height - {playerInfo.height} </div>
+                 <div> Weight - {playerInfo.weight} </div>
+                 <div> Years Pro - {playerInfo.yearsPro} </div>
 
               </Col>
             </Row>
@@ -62,19 +61,18 @@ function AllTeamsCardsView({ user }) {
               <Col md={12}>
                 <h5>Current Stats</h5>
                 <div>
-                <div> PPG | {playerInfo.stats.ppg} </div>
-                <div> APG | {playerInfo.stats.apg} </div>
-                <div> RPG | {playerInfo.stats.rpg} </div>
-                <div> SPG | {playerInfo.stats.spg} </div>
-                <div> BPG | {playerInfo.stats.bpg} </div>
-                <div> MPG | {playerInfo.stats.mpg} </div>
-                <div> Games Played | {playerInfo.stats.gamesPlayed} </div>
+                <div> PPG - {playerInfo.stats.ppg} </div>
+                <div> APG - {playerInfo.stats.apg} </div>
+                <div> RPG - {playerInfo.stats.rpg} </div>
+                <div> SPG - {playerInfo.stats.spg} </div>
+                <div> BPG - {playerInfo.stats.bpg} </div>
+                <div> MPG - {playerInfo.stats.mpg} </div>
+                <div> Games Played - {playerInfo.stats.gamesPlayed} </div>
 
                 </div>
               </Col>
             </Row>
           </Col>
-          }
           <Col md={8}>
         <h1>Your Cards</h1>
           <div className='teamsCardsContainer'>
@@ -104,7 +102,6 @@ function AllTeamsCardsView({ user }) {
     </div>
   );
 }
-
 AllTeamsCardsView.propTypes = {
   user: PropTypes.any
 };

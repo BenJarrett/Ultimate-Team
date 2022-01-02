@@ -13,8 +13,8 @@ export default function Routes({ user }) {
     <div>
       <Switch>
         <Route exact path='/'component={() => <LandingPage />} />
-        <Route exact path='/western-conference-teams' component={() => <WesternTeamsView /> } />
-        <Route exact path='/eastern-conference-teams' component={() => <EasternTeamsView /> } />
+        <Route exact path='/western-conference-teams' component={() => <WesternTeamsView user={user}/> } />
+        <Route exact path='/eastern-conference-teams' component={() => <EasternTeamsView user={user} /> } />
         <Route exact path='/unopened-packs/:id' component={() => <UnopenedPackView user={user} />} user={user} />
         <Route path='/teamCards/:id'component={() => <AllTeamsCardsView user={user} />} user={user} />
         <Route path='/packCards/:id'component={() => <PacksCardsView user={user} />} user={user} />

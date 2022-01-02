@@ -16,6 +16,7 @@ namespace Ultimate_Team_API.Models
         public string Conference { get; set; }
         public string TeamLogo { get; set; }
         public string TeamApiId { get; set; }
+        public Card Cards { get; set; }
     }
 
     //public enum TeamName

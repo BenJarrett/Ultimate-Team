@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import TeamCard from '../../components/TeamCard';
 import { getAllWesternConferenceTeams } from '../../helpers/data/team/teamData';
 
-function WesternTeamsView() {
+function WesternTeamsView({ user }) {
   const [wCTeam, setWcTeam] = useState([]);
 
   useEffect(() => {
@@ -17,6 +17,7 @@ function WesternTeamsView() {
           <TeamCard
           key={wCTeamInfo.id}
           {...wCTeamInfo}
+          user={user}
           />
         ))}
       </div>
@@ -25,6 +26,7 @@ function WesternTeamsView() {
 }
 
 WesternTeamsView.propTypes = {
-  wCTeamInfo: PropTypes.array
+  wCTeamInfo: PropTypes.array,
+  user: PropTypes.any
 };
 export default WesternTeamsView;
