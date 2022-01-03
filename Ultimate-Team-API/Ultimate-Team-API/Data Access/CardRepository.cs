@@ -97,7 +97,6 @@ namespace Ultimate_Team_API.Data_Access
         //internal Card AssignToUser(Guid id, Card card)
         //{
         //    using var db = new SqlConnection(_connectionString);
-        //    using var db = new SqlConnection(_connectionString);
 
         //    var sql = @"update Cards set 
         //                User.Id = @userId

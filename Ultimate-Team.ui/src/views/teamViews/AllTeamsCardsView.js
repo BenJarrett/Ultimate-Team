@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {
-  Card, CardImg, Col, Container, Row, Button, ToastHeader
+  Card, CardImg, Col, Container, Row, ToastHeader, Toast, ToastBody, Table
 } from 'reactstrap';
 import { GetAllUsersCardsForTeam, GetSingleCard } from '../../helpers/data/card/cardData';
 // import AllCardsCard from '../../components/AllCardsCard';
@@ -47,26 +47,100 @@ function AllTeamsCardsView({ user }) {
 
               </Col>
               <Col md={5} >
-                <h5>Player Info</h5>
+                {/* <h5>Player Info</h5>
                  <div> Position - {playerInfo.position} </div>
                  <div> Height - {playerInfo.height} </div>
                  <div> Weight - {playerInfo.weight} </div>
-                 <div> Years Pro - {playerInfo.yearsPro} </div>
+                 <div> Years Pro - {playerInfo.yearsPro} </div> */}
+                 <div className="mt-xl-4 p-lg-1 rounded bg-docs-transparent-grid">
+    <Toast>
+      <ToastHeader>
+        Player Info
+      </ToastHeader>
+      <ToastBody>
+      Position - {playerInfo.position}
+      <hr />
+      Height - {playerInfo.height}
+      < hr />
+      Weight - {playerInfo.weight} lb
+      < hr />
+      Years Pro - {playerInfo.yearsPro}
+      < hr />
+      </ToastBody>
+    </Toast>
+  </div>
 
               </Col>
             </Row>
             <Row>
               <Col md={12}>
-                <h5>Current Stats</h5>
+                <h5>2021-2022 Statitics</h5>
                 <div>
-                <div> PPG - {playerInfo.stats.ppg} </div>
+                {/* <div> PPG - {playerInfo.stats.ppg} </div>
                 <div> APG - {playerInfo.stats.apg} </div>
                 <div> RPG - {playerInfo.stats.rpg} </div>
                 <div> SPG - {playerInfo.stats.spg} </div>
                 <div> BPG - {playerInfo.stats.bpg} </div>
                 <div> MPG - {playerInfo.stats.mpg} </div>
-                <div> Games Played - {playerInfo.stats.gamesPlayed} </div>
-
+                <div> Games Played - {playerInfo.stats.gamesPlayed} </div> */}
+                <Table
+  bordered
+  hover
+  responsive
+  size="sm"
+  striped
+>
+  <thead>
+    <tr>
+      <th>
+      PPG
+      </th>
+      <th>
+      APG
+      </th>
+      <th>
+        RPG
+      </th>
+      <th>
+        SPG
+      </th>
+      <th>
+        BPG
+      </th>
+      <th>
+        MPG
+      </th>
+      <th>
+        Games Played
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+      {playerInfo.stats.ppg}
+      </td>
+      <td>
+      {playerInfo.stats.apg}
+      </td>
+      <td>
+      {playerInfo.stats.rpg}
+      </td>
+      <td>
+      {playerInfo.stats.spg}
+      </td>
+      <td>
+      {playerInfo.stats.bpg}
+      </td>
+      <td>
+      {playerInfo.stats.mpg}
+      </td>
+      <td>
+      {playerInfo.stats.gamesPlayed}
+      </td>
+    </tr>
+  </tbody>
+</Table>
                 </div>
               </Col>
             </Row>
@@ -90,8 +164,12 @@ function AllTeamsCardsView({ user }) {
                           { allCardsTeamInfo.tier}
                           </ToastHeader>
                       </div>
+                      <div className="rounded" >
+                          <ToastHeader className='toast-header'>
+                          { allCardsTeamInfo.teamName}
+                          </ToastHeader>
+                      </div>
                   </Card>
-                  <Button onClick={() => handleClick(allCardsTeamInfo.id, allCardsTeamInfo.playerId)} >Select Card</Button>
                   </div>
         ))}
       </div>
