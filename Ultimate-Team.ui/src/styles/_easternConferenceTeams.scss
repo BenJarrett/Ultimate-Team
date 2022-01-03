@@ -3,11 +3,14 @@
   flex-flow: row wrap;
   justify-content: center;
   text-align: center;
+  margin: 120px;
+  max-width: 1600px;
   .card {
     margin: 20px;
     padding: 25px;
     padding-bottom: 0px;
-    background-color:rgb(240, 247, 240) 
+    background-color: #fef5efec;
+    // border: solid white 2px;
   }
   .card img {
     height: 150px;
@@ -25,5 +28,22 @@
   .btn {
     margin-bottom: 0px;
     margin-top: 10px;
+  }
+
+  .progress-bar {
+    background-color: transparent;
+    max-width: 300px;
+  }
+
+  .toast {
+    max-width: 185px;
+    max-height: 145px;
+  }
+
+  .toast-header {
+    max-height: 145px;
+    max-width: 185px;
+    align-self: center;
+    justify-content: center;
   }
 }

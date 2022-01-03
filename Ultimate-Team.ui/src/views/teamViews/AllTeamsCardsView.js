@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {
-  Card, CardBody, CardImg, CardTitle, Col, Container, Row, Button
+  Card, CardImg, Col, Container, Row, Button, ToastHeader
 } from 'reactstrap';
 import { GetAllUsersCardsForTeam, GetSingleCard } from '../../helpers/data/card/cardData';
 // import AllCardsCard from '../../components/AllCardsCard';
@@ -20,9 +20,6 @@ function AllTeamsCardsView({ user }) {
   useEffect(() => {
     GetAllUsersCardsForTeam(user.id, id).then((response) => setAllTeamCards(response));
   }, []);
-
-  console.warn(allTeamCards.length);
-
   const handleClick = (cardId, playerId) => {
     GetSingleCard(cardId).then((response) => setSingleCard(response));
     GetPlayersStats(playerId).then((response) => setPlayerInfo(response));
@@ -47,6 +44,7 @@ function AllTeamsCardsView({ user }) {
                     />
                   </Card>
                 </div>
+
               </Col>
               <Col md={5} >
                 <h5>Player Info</h5>
@@ -78,19 +76,20 @@ function AllTeamsCardsView({ user }) {
           <div className='teamsCardsContainer'>
         {allTeamCards.map((allCardsTeamInfo) => (
           <div key={allCardsTeamInfo.id}>
-                <Card className='playerCard'
+                <Card onClick={() => handleClick(allCardsTeamInfo.id, allCardsTeamInfo.playerId) } style={ { cursor: 'pointer' } } className='playerCard'
                 >
+
                 <CardImg
                   alt="Select A Card"
                   src={allCardsTeamInfo.cardImage}
                   top
                   width="100%"
                 />
-                <CardBody>
-                  <CardTitle tag="h5">
-                  {allCardsTeamInfo.tier}
-                  </CardTitle>
-                </CardBody>
+                      <div className="rounded" >
+                          <ToastHeader className='toast-header'>
+                          { allCardsTeamInfo.tier}
+                          </ToastHeader>
+                      </div>
                   </Card>
                   <Button onClick={() => handleClick(allCardsTeamInfo.id, allCardsTeamInfo.playerId)} >Select Card</Button>
                   </div>
