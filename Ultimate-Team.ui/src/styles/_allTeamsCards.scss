@@ -35,6 +35,11 @@
   box-shadow: 0 8px 14px 0 rgba(80, 77, 77, 0.486);
 }
 
+  .playerCard:hover {
+    transform: scale(1.04);
+    transition: .7s;
+  }
+
 .nav {
   background-color: #fef5efec;
 }

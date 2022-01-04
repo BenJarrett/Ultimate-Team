@@ -28,9 +28,9 @@ function AllTeamsCardsView({ user }) {
   const renderSidebar = () => (<Col md={4}>
     <Row className='teamCards'>
       <Col className='singleCardContainer' md={7}>
-        <h5>
-          {playerInfo.firstName} {playerInfo.lastName}
-        </h5>
+      <ToastHeader className='player-name'>
+    {playerInfo.firstName} {playerInfo.lastName}
+</ToastHeader>
         <div>
           <Card>
             <CardImg

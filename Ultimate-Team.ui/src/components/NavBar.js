@@ -26,7 +26,7 @@ const NavBar = ({ user, setUser }) => {
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
-            <NavItem>
+            <NavItem className='nav-item'>
               <Link className="nav-link" to="/western-conference-teams">Western Conference Teams</Link>
             </NavItem>
             <NavItem>
