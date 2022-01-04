@@ -1,6 +1,8 @@
 # Full Stack Capstone
 <hr />
-## Ultimate Team
+# Project Name Ultimate Team
+<hr />
+<br />
 
 ### Overview
     (STILL A WORK IN PROGRESS. I HAVE NOT HIT MY MVP YET)
