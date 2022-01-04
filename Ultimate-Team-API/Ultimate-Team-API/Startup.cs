@@ -10,7 +10,9 @@ using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using Ultimate_Team_API.Data_Access;
 
 namespace Ultimate_Team_API
 {
@@ -26,6 +28,19 @@ namespace Ultimate_Team_API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IConfiguration>(Configuration);
+            services.AddTransient<UserRepository>();
+            services.AddTransient<PlayerRepository>();
+            services.AddTransient<TeamRepository>();
+            services.AddTransient<PackRepository>();
+            services.AddTransient<StatRepository>();
+            services.AddTransient<CardRepository>();
+
+
+            services.AddControllers().AddJsonOptions(options =>
+            options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
+            services.AddControllers().AddJsonOptions(options =>
+            options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -44,9 +59,13 @@ namespace Ultimate_Team_API
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Ultimate_Team_API v1"));
             }
 
+            app.UseCors(cfg => cfg.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

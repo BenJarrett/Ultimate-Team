@@ -1,0 +1,59 @@
+.teamsContainer {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  text-align: center;
+  margin: 120px;
+  max-width: 1600px;
+  .card {
+    margin: 20px;
+    padding: 25px;
+    padding-bottom: 0px;
+    background-color: #fef5efec;
+    box-shadow: 0 8px 14px 0 rgba(80, 77, 77, 0.486);
+
+  }
+  .card:hover {
+    transform: scale(1.05);
+    transition: .5s;
+  }
+  
+  .card img {
+    height: 150px;
+    width: 200px;
+    object-fit: cover;
+  }
+  .card-title {
+    margin: 0px;
+  }
+  .card-text {
+    margin: 0px;
+
+  }
+
+  .btn {
+    margin-bottom: 0px;
+    margin-top: 10px;
+  }
+
+  .progress-bar {
+    background-color: transparent;
+    max-width: 300px;
+  }
+
+  .progress-bar-container {
+    margin: 20px;
+  }
+
+  .toast {
+    max-width: 185px;
+    max-height: 145px;
+  }
+
+  .toast-header {
+    max-height: 145px;
+    max-width: 185px;
+    align-self: center;
+    justify-content: center;
+  }
+}

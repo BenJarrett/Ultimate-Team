@@ -1,0 +1,35 @@
+.singleCardContainer {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  text-align: center;
+
+  .card {
+    margin: 30px;
+  }
+  .card {
+    width: 200px;
+  }
+  .card img {
+    height: 250px;
+    width: 200px;
+    object-fit: cover;
+  }
+  img {
+    width: 225px; 
+  }
+}
+// .teamCards:hover {
+//   transform: scale(1.05);
+//   transition: .5s;
+// }
+
+.teamCards {
+  background-color: #fef5efec;
+  box-shadow: 0 8px 14px 0 rgba(80, 77, 77, 0.486);
+  border-radius: 3px;
+}
+
+.container {
+  margin: 40px;
+}

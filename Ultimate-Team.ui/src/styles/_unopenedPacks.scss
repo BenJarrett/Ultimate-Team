@@ -1,0 +1,18 @@
+.packsContainer {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  text-align: center;
+    .card {
+    margin: 30px;
+  }
+  .card {
+    width: 200px;
+  }
+  .card img {
+    width: 200px; 
+  }
+  img {
+    width: 225px; 
+  }
+}
