@@ -5,6 +5,7 @@
 ### Overview
     (STILL A WORK IN PROGRESS. I HAVE NOT HIT MY MVP YET)
 Ultimate Team is an interactive NBA card collecting application targeted to sports fans who love collecting cards. I am using a third party API, as well as my own, to create a platform for user to open packs of cards and keep up on their players current stats. In this app, users can earn packs filled with cards, when they open these packs, the user can now view them in their collection and all of that player's current stats! 
+<hr />
 
 ### Personal Motivation
 I am a huge NBA fan, as well as a stats nerd. I wanted to create an app that allows users to mix these two together, in a fun and interactive way. 
