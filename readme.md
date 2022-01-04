@@ -32,5 +32,25 @@ https://lucid.app/lucidchart/e11c7f2d-b717-413d-9514-14eb17b36971/edit?invitatio
 - A User can open these packs
 - When the user opens a pack, the cards assigned to the pack are now added to their collection
 
+### Front End Technoliges
+- React
+- JSX
+- JQuery
+- Reactstrap
+- Bootstrap
+- Node
+- SCSS
+- Javascript
+
+### Front End Technoliges
+- C#
+- .Net
+- Swagger
+- MySQL
+- Microsoft SQL Server Management Studio
+- Nuget
+- Linq
+- Third Party API
+
 ### Loom Video Walk-through
 - To be recorded when MVP is fully hit. 
