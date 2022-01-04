@@ -10,8 +10,14 @@
     padding: 25px;
     padding-bottom: 0px;
     background-color: #fef5efec;
-    // border: solid white 2px;
+    box-shadow: 0 8px 14px 0 rgba(80, 77, 77, 0.486);
+
   }
+  .card:hover {
+    transform: scale(1.05);
+    transition: .5s;
+  }
+  
   .card img {
     height: 150px;
     width: 200px;
@@ -33,6 +39,10 @@
   .progress-bar {
     background-color: transparent;
     max-width: 300px;
+  }
+
+  .progress-bar-container {
+    margin: 20px;
   }
 
   .toast {

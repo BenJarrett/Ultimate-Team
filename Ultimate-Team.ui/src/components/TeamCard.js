@@ -54,7 +54,8 @@ function TeamCard({ user, ...wCTeamInfo }) {
   <h5>
   Card Progression
   </h5>
-  <h6 className='progress-bar'>
+  <h6 className='progress-bar-heading'>
+    <div className='progress-bar-container'>
     <Progress
     barClassName='progress-bar'
     max={15}
@@ -64,6 +65,7 @@ function TeamCard({ user, ...wCTeamInfo }) {
   />
   <br />
   <br />
+  </div>
   </h6>
   </Container>
     </div>

@@ -9,6 +9,7 @@
   }
   .card {
     width: 207px;
+    
   }
   .card img {
     height: 250px;
@@ -31,8 +32,14 @@
   border-right: 8px #fff59a solid!important;
   border-left: 8px #fff59a solid!important;
   border-bottom: 10px #fff59a solid!important;
+  box-shadow: 0 8px 14px 0 rgba(80, 77, 77, 0.486);
 }
 
 .nav {
   background-color: #fef5efec;
+}
+
+.cardColumn {
+  margin: auto;
+  text-align: center;
 }

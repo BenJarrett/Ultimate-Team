@@ -25,8 +25,8 @@ function AllTeamsCardsView({ user }) {
     GetPlayersStats(playerId).then((response) => setPlayerInfo(response));
   };
 
-  const renderSidebar = () => (<Col md={4} className='teamCards'>
-    <Row>
+  const renderSidebar = () => (<Col md={4}>
+    <Row className='teamCards'>
       <Col className='singleCardContainer' md={7}>
         <h5>
           {playerInfo.firstName} {playerInfo.lastName}
@@ -44,11 +44,6 @@ function AllTeamsCardsView({ user }) {
 
       </Col>
       <Col md={5} >
-        {/* <h5>Player Info</h5>
-         <div> Position - {playerInfo.position} </div>
-         <div> Height - {playerInfo.height} </div>
-         <div> Weight - {playerInfo.weight} </div>
-         <div> Years Pro - {playerInfo.yearsPro} </div> */}
          <div className="mt-xl-4 p-lg-1 rounded bg-docs-transparent-grid">
 <Toast>
 <ToastHeader>
@@ -68,8 +63,8 @@ Years Pro - {playerInfo.yearsPro}
 </div>
 
       </Col>
-    </Row>
-    <Row>
+    {/* </Row> */}
+    {/* <Row> */}
       <Col md={12}>
         <div>
         {/* <div> PPG - {playerInfo.stats.ppg} </div>
@@ -148,7 +143,7 @@ Games Played
       <Container>
         <Row>
           {playerInfo?.firstName ? renderSidebar() : <></>}
-          <Col md={8}>
+          <Col md={8} className='cardColumn'>
         <h1>Your Cards</h1>
           <div className='teamsCardsContainer'>
         {allTeamCards.map((allCardsTeamInfo) => (
