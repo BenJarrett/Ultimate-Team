@@ -1,6 +1,6 @@
 # Full Stack Capstone
 
-### Ultimate Team
+## Ultimate Team
 
 ### Overview
     (STILL A WORK IN PROGRESS. I HAVE NOT HIT MY MVP YET)
@@ -15,10 +15,10 @@ https://dbdiagram.io/d/61aa9e2d8c901501c0dff9cf
 ### Deployment Link
 This is not deployed. Deploying a full stack application is not something we have covered here at NSS.
 
-# WIREFRAME 
+### WIREFRAME 
 https://lucid.app/lucidchart/e11c7f2d-b717-413d-9514-14eb17b36971/edit?invitationId=inv_455062f5-4667-4c50-9e1d-aa603510df11
 
-# SCREENSHOTS
+### SCREENSHOTS
 ![Screenshot 2022-01-04 151825](https://user-images.githubusercontent.com/76926244/148125521-52ec0f10-aa71-43ab-865f-b35157705363.jpg)
 ![Screenshot 2022-01-04 152012](https://user-images.githubusercontent.com/76926244/148125532-22c87e77-3714-4b01-963e-9faa4553ac09.jpg)
 ![Screenshot 2022-01-04 152040](https://user-images.githubusercontent.com/76926244/148125537-23fb05d4-77e4-49f2-b15a-087d7cc222f1.jpg)
