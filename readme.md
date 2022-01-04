@@ -1,7 +1,7 @@
 # Full Stack Capstone
 <hr />
-# Project Name 
-Ultimate Team
+
+# Ultimate Team
 <hr />
 <br />
 
