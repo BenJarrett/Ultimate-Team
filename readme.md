@@ -24,8 +24,13 @@ https://lucid.app/lucidchart/e11c7f2d-b717-413d-9514-14eb17b36971/edit?invitatio
 ![Screenshot 2022-01-04 152040](https://user-images.githubusercontent.com/76926244/148125537-23fb05d4-77e4-49f2-b15a-087d7cc222f1.jpg)
 
 ### Features & User Stories
-
-### Screenshots
+- User can sign in using Google Authentication and create an account
+- User can view all teams in the Eastern and Western Conference
+- User can see how many cards from each team they have collected frim the progression bar and counter on the teams cards
+- User can click a card in their collection and view their up to date current stats
+- User can earn packs that contain new cards
+- A User can open these packs
+- When the user opens a pack, the cards assigned to the pack are now added to their collection
 
 ### Loom Video Walk-through
 - To be recorded when MVP is fully hit. 
