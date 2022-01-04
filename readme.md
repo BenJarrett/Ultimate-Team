@@ -1,4 +1,4 @@
-## Front-end Capstone
+#### Full Stack Capstone
 
 ### Ultimate Team
 
