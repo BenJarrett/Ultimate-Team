@@ -28,6 +28,7 @@ https://lucid.app/lucidchart/e11c7f2d-b717-413d-9514-14eb17b36971/edit?invitatio
 
 ### SCREENSHOTS
 ![Screenshot 2022-01-04 151825](https://user-images.githubusercontent.com/76926244/148125521-52ec0f10-aa71-43ab-865f-b35157705363.jpg)
+![Capture](https://user-images.githubusercontent.com/76926244/148127106-9a392e9f-2af3-4f9d-b8f5-968b17a8de66.PNG)
 ![Screenshot 2022-01-04 152012](https://user-images.githubusercontent.com/76926244/148125532-22c87e77-3714-4b01-963e-9faa4553ac09.jpg)
 ![Screenshot 2022-01-04 152040](https://user-images.githubusercontent.com/76926244/148125537-23fb05d4-77e4-49f2-b15a-087d7cc222f1.jpg)
 <hr />
