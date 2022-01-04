@@ -74,13 +74,15 @@ namespace Ultimate_Team_API.Controllers
         public IActionResult OpenPack(Guid id, Pack pack)
         {
             var packToUpdate = _packRepository.GetAPackByPackId(id);
+            var cards = _cardRepository.GetFiveRandomCards();
 
             if (packToUpdate == null) NotFound($"Could Not find Pack with the id {id} to update");
 
+
             var updatedPack = _packRepository.UpdateStatus(id, pack);
+
             return Ok(updatedPack);
         }
-
 
     }
 }

@@ -13,6 +13,7 @@ namespace Ultimate_Team_API.Models
         public string PackName { get; set; }
         [JsonConverter(typeof(JsonStringEnumConverter))] public PackType PackType { get; set; }
         public string PackImage { get; set; }
+        public Card Cards { get; set; } 
         public bool Status { get; set; }
 
     }

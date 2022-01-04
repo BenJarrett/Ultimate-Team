@@ -94,6 +94,19 @@ namespace Ultimate_Team_API.Data_Access
             return cards;
         }
 
+        internal IEnumerable<Card> GetFiveRandomCards()
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var players = db.Query<Card>(@"Select *
+                                        From Cards");
+
+
+            var randomPlayers =  players.OrderBy(x => Guid.NewGuid()).Take(5);
+
+            return randomPlayers;
+        }
+
         //internal Card AssignToUser(Guid id, Card card)
         //{
         //    using var db = new SqlConnection(_connectionString);
@@ -107,7 +120,7 @@ namespace Ultimate_Team_API.Data_Access
         //    card.Id = id;
         //}
 
-        
+
 
         // Get Teams Cards of a Specific User //
         internal IEnumerable<Card> GetUsersCardsByTeamId(Guid userId, string teamId)

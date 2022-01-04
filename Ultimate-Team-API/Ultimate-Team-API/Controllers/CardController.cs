@@ -83,5 +83,11 @@ namespace Ultimate_Team_API.Controllers
         //    return Ok(updatedCards);
         //}
 
+        // Get 5 Random Cards //
+        [HttpGet("random")]
+        public IActionResult GetRandomCards()
+        {
+            return Ok(_repo.GetFiveRandomCards());
+        }
     }
 }
