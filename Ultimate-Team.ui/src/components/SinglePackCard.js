@@ -9,12 +9,13 @@ import {
   Button
 } from 'reactstrap';
 import { useHistory } from 'react-router-dom';
+import { OpenPack } from '../helpers/data/pack/packData';
 
 function SinglePackCard({ ...packInfo }) {
   const history = useHistory();
 
   const handleClick = () => {
-    history.push(`/packCards/${packInfo.id}`);
+    OpenPack(packInfo.id).then(() => history.push(`/packCards/${packInfo.id}`));
   };
 
   return (

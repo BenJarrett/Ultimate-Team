@@ -85,5 +85,11 @@ namespace Ultimate_Team_API.Controllers
         {
             return Ok(_repo.GetUsersPlayersByUserId(id));
         }
+
+        [HttpGet("random")]
+        public IActionResult GetRandomPlayers()
+        {
+            return Ok(_repo.GetFiveRandomPlayers());
+        }
     }
 }

@@ -10,6 +10,7 @@ namespace Ultimate_Team_API.Models
     public class Pack
     {
         public Guid Id { get; set; }
+        public Guid userId { get; set; }
         public string PackName { get; set; }
         [JsonConverter(typeof(JsonStringEnumConverter))] public PackType PackType { get; set; }
         public string PackImage { get; set; }

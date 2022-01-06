@@ -7,4 +7,8 @@ const GetUsersUnopenedPacks = (id) => new Promise((resolve, reject) => {
   axios.get(`${apiUrl}/pack/unopened/user/${id}`).then((response) => resolve(response.data)).catch(reject);
 });
 
-export default GetUsersUnopenedPacks;
+const OpenPack = (id) => new Promise((resolve, reject) => {
+  axios.put(`${apiUrl}/pack/${id}`).then((response) => resolve(response.data)).catch(reject);
+});
+
+export { GetUsersUnopenedPacks, OpenPack };

@@ -60,9 +60,25 @@ namespace Ultimate_Team_API.Data_Access
             return card;
         }
 
-        internal object GetUsersCardsByTeamIdLength(string teamId)
+        internal object UpdateCardsPlayerId(string id, Card card)
         {
-            throw new NotImplementedException();
+            using var db = new SqlConnection(_connectionString);
+
+            var sql = @"update Cards set
+                                     PlayerId = @playerId
+                                        output inserted.Id
+                                     Where Id = @id";
+
+            card.Id = id;
+
+            var parameters = new
+            {
+                PlayerId = card.PlayerId,
+                Id = card.Id
+            };
+
+            var updatedCard = db.QueryFirstOrDefault<Card>(sql, parameters);
+            return updatedCard;
         }
 
         // Get All Cards In A Pack by Pack Id //
@@ -106,6 +122,35 @@ namespace Ultimate_Team_API.Data_Access
 
             return randomPlayers;
         }
+        internal void AddCard(Card newCard)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var sql = @"INSERT INTO [dbo].[Cards]
+                                       (
+                                        [playerId]
+                                       ,[tier]
+                                       ,[cardImage]
+                                       ,[userId]
+                                       ,[packId])
+	                            output inserted.Id
+                                 VALUES
+		                            (@playerId, @tier, @cardImage, @userId, @packId)";
+
+            var parameters = new
+            {
+                PlayerId = newCard.PlayerId,
+                Tier = newCard.Tier,
+                CardImage = newCard.CardImage,
+                UserId = newCard.UserId,
+                PackId = newCard.PackId
+            };
+
+            var id = db.ExecuteScalar<string>(sql, parameters);
+
+            newCard.Id = id;
+        }
+
 
         //internal Card AssignToUser(Guid id, Card card)
         //{

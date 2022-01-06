@@ -82,6 +82,39 @@ namespace Ultimate_Team_API.Data_Access
             return player;
         }
 
+        internal IEnumerable<Player> GetFiveRandomPlayers()
+        {
+            using var db = new SqlConnection(_connectionString);
+
+
+            var client = new RestClient("http://data.nba.net/data/10s/prod/v1/2021");
+
+            var request = new RestRequest("players.json");
+
+            var response = client.Get<AllPlayersResponseData>(request);
+
+            var players = db.Query<Player>(@"Select *
+                                        From Players");
+
+            var apiPlayers = response.Data.league.standard;
+
+
+            foreach (var player in players)
+            {
+                var matchingApiPlayer = apiPlayers.FirstOrDefault(p => p.personId == player.PlayerApiId);
+                player.Height = $"{matchingApiPlayer.heightFeet}' {matchingApiPlayer.heightInches}\"";
+                player.Weight = matchingApiPlayer.weightPounds;
+                player.Position = matchingApiPlayer.pos;
+                player.Age = matchingApiPlayer.dateOfBirthUTC;
+                player.YearsPro = matchingApiPlayer.yearsPro;
+            }
+
+            var randomPlayers = players.OrderBy(x => Guid.NewGuid()).Take(5);
+
+            return randomPlayers;
+
+        }
+
         //// Get Player by Card Id //
         //internal IEnumerable<Player> GetPlayersCardsByPlayerId(string playerId)
         //{

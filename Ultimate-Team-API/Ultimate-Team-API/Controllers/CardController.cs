@@ -11,15 +11,18 @@ namespace Ultimate_Team_API.Controllers
     [Route("api/card")]
     [ApiController]
     public class CardController : ControllerBase
+
     {
 
         CardRepository _repo;
         UserRepository _userRepo;
+        PlayerRepository _playerRepo;
 
-        public CardController(CardRepository repo, UserRepository userRepo)
+        public CardController(CardRepository repo, UserRepository userRepo, PlayerRepository playerRepo)
         {
             _repo = repo;
             _userRepo = userRepo;
+            _playerRepo = playerRepo;
         }
 
         // Get All Cards //
@@ -89,5 +92,41 @@ namespace Ultimate_Team_API.Controllers
         {
             return Ok(_repo.GetFiveRandomCards());
         }
+
+        // Add Card //
+        [HttpPost]
+        public IActionResult AddCard(CreateCardCommand command)
+        {
+            //var players = _playerRepo.GetFiveRandomPlayers();
+
+            var card = new Card
+            {   PlayerId = command.PlayerId,
+                UserId = command.UserId,
+                PackId = command.PackId,
+                Tier = command.Tier,
+                CardImage = command.PlayerImage
+            };
+
+
+            _repo.AddCard(card);
+
+            return Created($"/api/cards/{card.Id}", card);
+        }
+
+        [HttpPut("{playerId}")]
+        public IActionResult UpdateCardPlayerId(string id, Card card)
+        {
+            var cardToUpdate = _repo.GetACardByCardId(id);
+
+            if (cardToUpdate == null)
+            {
+                return NotFound($"Could not find an order with id {id} for updating");
+            }
+
+            var updatedOrder = _repo.UpdateCardsPlayerId(id, card);
+            return Ok(updatedOrder);
+
+        }
+
     }
 }
