@@ -41,7 +41,7 @@ https://lucid.app/lucidchart/e11c7f2d-b717-413d-9514-14eb17b36971/edit?invitatio
 ### Features & User Stories
 - User can sign in using Google Authentication and create an account
 - User can view all teams in the Eastern and Western Conference
-- User can see how many cards from each team they have collected frim the progression bar and counter on the teams cards
+- User can see how many cards from each team they have collected from the progression bar and counter on the teams cards
 - User can click a card in their collection and view their up to date current stats
 - A User can open packs
 - When a pack is open, the app randomizes players based on cards the user already has
