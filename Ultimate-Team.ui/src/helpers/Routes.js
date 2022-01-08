@@ -6,8 +6,8 @@ import LandingPage from '../views/LandingPage';
 import WesternTeamsView from '../views/teamViews/WesternTeamView';
 import UnopenedPackView from '../views/packViews/UnopenedPackView';
 import AllTeamsCardsView from '../views/teamViews/AllTeamsCardsView';
-import PacksCardsView from '../views/packViews/PacksCardsView';
 import PrivateRoute from './PrivateRoute';
+import PacksCardsView from '../views/packViews/PacksCardsView';
 
 export default function Routes({ user }) {
   return (
