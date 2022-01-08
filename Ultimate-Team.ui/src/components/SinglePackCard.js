@@ -2,11 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
   Card,
-  CardText,
-  CardBody,
-  CardTitle,
   CardImg,
-  Button
+  ToastHeader
 } from 'reactstrap';
 import { useHistory } from 'react-router-dom';
 import { OpenPack } from '../helpers/data/pack/packData';
@@ -20,22 +17,19 @@ function SinglePackCard({ ...packInfo }) {
 
   return (
     <div>
-      <Card>
-    <CardImg
-      alt="Card image cap"
-      src={packInfo.packImage}
-      top
-      width="100%"
-    />
-    <CardBody>
-      <CardTitle tag="h5">
-      {packInfo.packName} Pack
-      </CardTitle>
-      <CardText>
-      </CardText>
-    </CardBody>
-  </Card>
-  <Button onClick={() => handleClick() }>Open Pack</Button>
+        <Card onClick={() => handleClick() } style={ { cursor: 'pointer' } } className='playerCard'>
+      <CardImg
+        alt="Card image cap"
+        src={packInfo.packImage}
+        top
+        width="100%"
+      />
+      <div className="rounded" >
+          <ToastHeader className='toast-header'>
+          { packInfo.packName} Pack
+          </ToastHeader>
+      </div>
+        </Card>
     </div>
   );
 }

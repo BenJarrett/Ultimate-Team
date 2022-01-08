@@ -24,7 +24,7 @@ function PacksCardsView() {
           />
       ))}
       </div>
-      <Button onClick={() => history.goBack()}>Continue</Button>
+      <Button className="signIn"onClick={() => history.goBack()}>Continue</Button>
       </div>
   );
 }
