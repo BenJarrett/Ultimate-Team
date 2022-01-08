@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
+import { Button } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { GetPacksCards } from '../../helpers/data/card/cardData';
 import CardsInPackCard from '../../components/CardsInPackCard';
@@ -7,13 +8,14 @@ import CardsInPackCard from '../../components/CardsInPackCard';
 function PacksCardsView() {
   const [allPackCards, setAllPackCards] = useState([]);
   const { id } = useParams();
+  const history = useHistory();
 
   useEffect(() => {
     GetPacksCards(id).then((response) => setAllPackCards(response));
   }, []);
 
   return (
-    <div>
+    <div className='pack-btn'>
       <div className='packCardsContainer'>
       {allPackCards.map((allPackCardsInfo) => (
           <CardsInPackCard
@@ -22,7 +24,8 @@ function PacksCardsView() {
           />
       ))}
       </div>
-    </div>
+      <Button onClick={() => history.goBack()}>Continue</Button>
+      </div>
   );
 }
 

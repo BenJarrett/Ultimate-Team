@@ -7,14 +7,16 @@
 @import 'singleCardContainer';
 @import 'unopenedPacks';
 @import 'packCards';
+@import 'landingPage';
 body {
-  background-color: #2f37506c!important;
+  background-color:   #435a997c!important;
   font-family: 'Bitter', serif!important;
   font-weight: 800!important;
 }
 
 .player-name {
-  color: black!important;
+  color: #36384d!important;
   margin-top: 20px;
+  background-color:#fff59a !important;
 }
  

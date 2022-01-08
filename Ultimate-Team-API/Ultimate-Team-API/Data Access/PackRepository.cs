@@ -51,11 +51,7 @@ namespace Ultimate_Team_API.Data_Access
 
             var sql = @"Select p.*
                 From Packs p
-                    join Cards c
-                        on p.id = c.packId
-                            join Users u
-                                on c.userId = u.id
-                                    where u.id = @id";
+                where p.userid = @id";
              
             var packs = db.Query<Pack>(sql, new { id = userId });
 
@@ -69,11 +65,7 @@ namespace Ultimate_Team_API.Data_Access
 
             var sql = @"Select p.*
                 From Packs p
-                    join Cards c
-                        on p.id = c.packId
-                            join Users u
-                                on c.userId = u.id
-                                    where u.id = @id
+                                    where userId = @id
                                         and p.status = 0";
 
             var packs = db.Query<Pack>(sql, new { id = userId });
@@ -95,7 +87,7 @@ namespace Ultimate_Team_API.Data_Access
 
             var parameters = new
             {
-                Status = pack.Status
+                id
             };
 
             var openedPack = db.QueryFirstOrDefault<Pack>(sql, parameters);

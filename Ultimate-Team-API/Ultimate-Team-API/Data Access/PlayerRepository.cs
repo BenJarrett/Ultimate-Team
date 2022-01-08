@@ -82,21 +82,42 @@ namespace Ultimate_Team_API.Data_Access
             return player;
         }
 
-        //// Get Player by Card Id //
-        //internal IEnumerable<Player> GetPlayersCardsByPlayerId(string playerId)
-        //{
-        //    using var db = new SqlConnection(_connectionString);
+        internal IEnumerable<Player> GetFiveRandomPlayers(IEnumerable<string> playersToExclude)
+        {
+            using var db = new SqlConnection(_connectionString);
 
-        //    var response = client.Get<AllPlayersResponseData>(request);
 
-        //    var sql = @"Select *
-        //        From Cards
-        //        WHERE playerId = @playerId";
+            var client = new RestClient("http://data.nba.net/data/10s/prod/v1/2021");
 
-        //    var cards = db.Query<Card>(sql, new { playerId = playerId });
+            var request = new RestRequest("players.json");
 
-        //    return cards;
-        //}
+            var response = client.Get<AllPlayersResponseData>(request);
+
+            var players = db.Query<Player>(@"Select *
+                                        From Players");
+
+            var apiPlayers = response.Data.league.standard;
+
+            
+            foreach (var player in players)
+            {
+                var matchingApiPlayer = apiPlayers.FirstOrDefault(p => p.personId == player.PlayerApiId);
+                player.Height = $"{matchingApiPlayer.heightFeet}' {matchingApiPlayer.heightInches}\"";
+                player.Weight = matchingApiPlayer.weightPounds;
+                player.Position = matchingApiPlayer.pos;
+                player.Age = matchingApiPlayer.dateOfBirthUTC;
+                player.YearsPro = matchingApiPlayer.yearsPro;
+            }
+
+            players = players.Where(p => !playersToExclude.Contains(p.Id));
+
+
+            var randomPlayers = players.OrderBy(x => Guid.NewGuid()).Take(5);
+
+            return randomPlayers;
+
+        }
+
 
         // Get All Players on a Specific Team //
         internal IEnumerable<Player> GetPlayersByTeamId(string teamId)

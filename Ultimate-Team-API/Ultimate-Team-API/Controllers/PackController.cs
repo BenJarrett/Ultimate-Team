@@ -13,16 +13,19 @@ namespace Ultimate_Team_API.Controllers
 
     public class PackController : ControllerBase
     {
+        public string GoogleId => User.FindFirst(claim => claim.Type == "user_id").Value;
 
         PackRepository _packRepository;
         CardRepository _cardRepository;
         UserRepository _userRepository;
+        PlayerRepository _playerRepo;
 
-        public PackController(PackRepository packRepo, CardRepository cardRepo, UserRepository userRepo)
+        public PackController(PackRepository packRepo, CardRepository cardRepo, UserRepository userRepo, PlayerRepository playerRepo)
         {
             _packRepository = packRepo;
             _cardRepository = cardRepo;
             _userRepository = userRepo;
+            _playerRepo = playerRepo;
         }
 
         // Get All Packs //
@@ -71,18 +74,43 @@ namespace Ultimate_Team_API.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult OpenPack(Guid id, Pack pack)
+        public IActionResult OpenPack(Guid id)
         {
             var packToUpdate = _packRepository.GetAPackByPackId(id);
-            var cards = _cardRepository.GetFiveRandomCards();
-
             if (packToUpdate == null) NotFound($"Could Not find Pack with the id {id} to update");
 
+            var user = _userRepository.GetUserByGoogleId(GoogleId);
+            var usersCards = _cardRepository.GetCardsByUserId(user.Id).Select(cards => cards.PlayerId);
+            var players = _playerRepo.GetFiveRandomPlayers(usersCards);
 
-            var updatedPack = _packRepository.UpdateStatus(id, pack);
+            var cards = players.Select(p =>
+                new Card
+                {
+                    PackId = id,
+                    PlayerId = p.Id,
+                    CardImage = p.PlayerImage,
+                    UserId = user.Id,
+                    Tier = GetRandomTier()
+                });
 
-            return Ok(updatedPack);
+            foreach (var card in cards)
+            {
+                _cardRepository.AddCard(card);
+            }
+
+
+            var updatedPack = _packRepository.UpdateStatus(id, packToUpdate);
+
+            return Ok(cards);
         }
 
+
+
+        private static Tier GetRandomTier()
+        {
+            var tiers = new[] { Tier.Sapphire, Tier.Gold, Tier.Diamond, Tier.Amethyst, Tier.Emerald };
+            var randomTier = tiers.OrderBy(x => Guid.NewGuid()).First();
+            return randomTier;
+        }
     }
 }

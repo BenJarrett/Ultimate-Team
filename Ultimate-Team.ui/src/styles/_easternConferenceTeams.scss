@@ -11,11 +11,15 @@
     padding-bottom: 0px;
     background-color: #fef5efec;
     box-shadow: 0 8px 14px 0 rgba(80, 77, 77, 0.486);
+    transition: .6s;
 
   }
   .card:hover {
     transform: scale(1.05);
-    transition: .5s;
+    transition: .6s;
+    .toast-header {
+      color: #36384d !important;;
+    }
   }
   
   .card img {
@@ -41,13 +45,24 @@
     max-width: 300px;
   }
 
+  // .progress-bar-container1 {
+  //   // box-shadow: 0 8px 14px 0 rgba(80, 77, 77, 0.486);
+  //   background-color: #fef5efec;
+  // }
   .progress-bar-container {
     margin: 20px;
+    box-shadow: 0 0px 4px 0 #cebf36fb;
   }
 
+  .progress-bar-heading
   .toast {
     max-width: 185px;
     max-height: 145px;
+  }
+  
+  .progress-bar-card {
+    color: #fef5efec;
+    background-color: #36384d
   }
 
   .toast-header {
@@ -55,5 +70,12 @@
     max-width: 185px;
     align-self: center;
     justify-content: center;
+    color: #36384d;
+    background-color: #fff59a;
   }
+
+  .toast-body {
+    color: #36384d !important;
+  }
+  
 }

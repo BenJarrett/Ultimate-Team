@@ -27,6 +27,8 @@ function TeamCard({ user, ...wCTeamInfo }) {
   return (
     <div>
       <Container>
+        <br />
+  <br />
       <Card onClick={() => handleClick() } style={ { cursor: 'pointer' } }>
       <ToastHeader className="toast-header">
       {wCTeamInfo.teamName}
@@ -44,29 +46,29 @@ function TeamCard({ user, ...wCTeamInfo }) {
       <ToastHeader className='toast-header'>
       {wCTeamInfo.city}
       </ToastHeader>
-      <ToastBody>
+      <ToastBody class>
       {allTeamCards.length}/15 Cards Collected
       </ToastBody>
     </Toast>
   </div>
   </Card>
-  <br />
-  <h5>
-  Card Progression
-  </h5>
-  <h6 className='progress-bar-heading'>
-    <div className='progress-bar-container'>
-    <Progress
-    barClassName='progress-bar'
-    max={15}
-    animated
-    color="warning"
-    value={allTeamCards.length}
-  />
-  <br />
-  <br />
-  </div>
-  </h6>
+  <div className='progress-bar-container1'>
+    <Card className='progress-bar-card'>
+      <h5>
+      Card Progression
+      </h5>
+      <h6 className='progress-bar-heading'>
+        <div className='progress-bar-container'>
+        <Progress
+        barClassName='progress-bar'
+        max={15}
+        animated
+        color="warning"
+        value={allTeamCards.length}
+      />
+      </div>
+      </h6></Card>
+      </div>
   </Container>
     </div>
   );

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import SinglePackCard from '../../components/SinglePackCard';
-import GetUsersUnopenedPacks from '../../helpers/data/pack/packData';
+import { GetUsersUnopenedPacks } from '../../helpers/data/pack/packData';
 
 function UnopenedPackView() {
   const [pack, setPack] = useState([]);
@@ -22,6 +22,8 @@ function UnopenedPackView() {
           />
         ))}
       </div>
+      {pack.length === 0 && <h2>You have no Packs!</h2>}
+
     </div>
   );
 }
