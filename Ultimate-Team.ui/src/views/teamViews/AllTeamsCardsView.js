@@ -45,85 +45,85 @@ function AllTeamsCardsView({ user }) {
       </Col>
       <Col md={5} >
          <div className="mt-xl-4 p-lg-1 rounded bg-docs-transparent-grid">
-<Toast>
-<ToastHeader>
-Player Info
-</ToastHeader>
-<ToastBody>
-Position - {playerInfo.position}
-<hr />
-Height - {playerInfo.height}
-< hr />
-Weight - {playerInfo.weight} lb
-< hr />
-Years Pro - {playerInfo.yearsPro}
-< hr />
-</ToastBody>
-</Toast>
-</div>
-
+            <Toast>
+              <ToastHeader>
+              Player Info
+              </ToastHeader>
+                <ToastBody>
+                Position - {playerInfo.position}
+                <hr />
+                Height - {playerInfo.height}
+                < hr />
+                Weight - {playerInfo.weight} lb
+                < hr />
+                Years Pro - {playerInfo.yearsPro}
+                < hr />
+                </ToastBody>
+            </Toast>
+          </div>
       </Col>
+
       <Col md={12}>
         <div>
         <Table className='table caption-top'
-bordered
-hover
-responsive
-size="sm"
-striped
->
-<caption>2021-2022 Statistics</caption>
-<thead>
-<tr>
-<th className='table-dark'>
-PPG
-</th>
-<th className='table-dark'>
-APG
-</th>
-<th className='table-dark'>
-RPG
-</th>
-<th className='table-dark'>
-SPG
-</th>
-<th className='table-dark'>
-BPG
-</th>
-<th className='table-dark'>
-MPG
-</th>
-<th className='table-dark'>
-Games Played
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-{playerInfo.stats.ppg}
-</td>
-<td>
-{playerInfo.stats.apg}
-</td>
-<td>
-{playerInfo.stats.rpg}
-</td>
-<td>
-{playerInfo.stats.spg}
-</td>
-<td>
-{playerInfo.stats.bpg}
-</td>
-<td>
-{playerInfo.stats.mpg}
-</td>
-<td>
-{playerInfo.stats.gamesPlayed}
-</td>
-</tr>
-</tbody>
-</Table>
+        bordered
+        hover
+        responsive
+        size="sm"
+        striped>
+          <caption>2021-2022 Statistics</caption>
+            <thead>
+            <tr>
+                <th className='table-dark'>
+                  PPG
+                </th>
+                <th className='table-dark'>
+                  APG
+                </th>
+                <th className='table-dark'>
+                  RPG
+                </th>
+                <th className='table-dark'>
+                  SPG
+                </th>
+                <th className='table-dark'>
+                  BPG
+                </th>
+                <th className='table-dark'>
+                  MPG
+                </th>
+                <th className='table-dark'>
+                  Games Played
+                </th>
+              </tr>
+            </thead>
+
+                <tbody>
+                  <tr>
+                    <td>
+                    {playerInfo.stats.ppg}
+                    </td>
+                    <td>
+                    {playerInfo.stats.apg}
+                    </td>
+                    <td>
+                    {playerInfo.stats.rpg}
+                    </td>
+                    <td>
+                    {playerInfo.stats.spg}
+                    </td>
+                    <td>
+                    {playerInfo.stats.bpg}
+                    </td>
+                    <td>
+                    {playerInfo.stats.mpg}
+                    </td>
+                    <td>
+                    {playerInfo.stats.gamesPlayed}
+                    </td>
+                  </tr>
+              </tbody>
+        </Table>
         </div>
       </Col>
     </Row>
