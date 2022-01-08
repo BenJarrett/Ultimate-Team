@@ -47,6 +47,9 @@ https://lucid.app/lucidchart/e11c7f2d-b717-413d-9514-14eb17b36971/edit?invitatio
 - When a pack is open, the app randomizes players based on cards the user already has
 - It then makes cards of those players and assigns them to the user who is logged in
 - When the user opens a pack, the cards assigned to the pack are now added to their collection
+- User can see how many cards they have for each team
+- When user clicks on a team, they can view the cards they have collected of that team
+- When a User clicks on a player's card, they will see their updated information and stats from a combination of external API and my API.
 <hr />
 
 ### Front End Technoliges
