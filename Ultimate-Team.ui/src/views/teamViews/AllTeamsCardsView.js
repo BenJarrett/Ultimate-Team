@@ -5,14 +5,11 @@ import {
   Card, CardImg, Col, Container, Row, ToastHeader, Toast, ToastBody, Table
 } from 'reactstrap';
 import { GetAllUsersCardsForTeam, GetSingleCard } from '../../helpers/data/card/cardData';
-// import AllCardsCard from '../../components/AllCardsCard';
 import GetPlayersStats from '../../helpers/data/stat/statData';
 
 function AllTeamsCardsView({ user }) {
   const [allTeamCards, setAllTeamCards] = useState([]);
-  // const [currentCardId, setCurrentCardId] = useState();
   const [singleCard, setSingleCard] = useState({ });
-  // const [currentPlayerId, setCurrentPlayerId] = useState();
   const [playerInfo, setPlayerInfo] = useState({ stats: { } });
 
   const { id } = useParams();
