@@ -11,4 +11,8 @@ const OpenPack = (id) => new Promise((resolve, reject) => {
   axios.put(`${apiUrl}/pack/${id}`).then((response) => resolve(response.data)).catch(reject);
 });
 
-export { GetUsersUnopenedPacks, OpenPack };
+const UpdatePackStatus = (id) => new Promise((resolve, reject) => {
+  axios.put(`${apiUrl}/update/status${id}`).then((response) => resolve(response.data)).catch(reject);
+});
+
+export { GetUsersUnopenedPacks, OpenPack, UpdatePackStatus };

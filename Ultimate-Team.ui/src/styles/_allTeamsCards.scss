@@ -33,6 +33,7 @@
   border-left: 8px #fff59a solid!important;
   border-bottom: 10px #fff59a solid!important;
   box-shadow: 0 8px 14px 0 rgba(80, 77, 77, 0.486);
+  transition: .7s;
 }
 
   .playerCard:hover {
@@ -41,10 +42,47 @@
   }
 
 .nav {
-  background-color: #fef5efec;
+  background-color: #36384d;
 }
 
 .cardColumn {
   margin: auto;
   text-align: center;
+}
+
+.playerCardImage {
+  width: 100%!important;
+}
+
+.nav-item {
+  padding: 0px 15px;
+  a {
+    color: #fef5efec!important;
+    transition: .7s;
+  }
+  a:hover {
+    color: #fff59a!important;
+    transform: scale(1.04);
+    transition: .7s;
+
+  }
+}
+nav {
+  padding: 5px 160px 10px!important;
+  img:hover {
+    transform: scale(1.04);
+    transition: .7s;
+  }
+  img {
+    transition: .7s;
+    
+  }
+
+  .dropdown-text {
+    color:#36384d!important;
+  }
+
+  .dropdown-text:hover {
+    color: #36384d!important;
+  }
 }

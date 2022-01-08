@@ -63,17 +63,8 @@ Years Pro - {playerInfo.yearsPro}
 </div>
 
       </Col>
-    {/* </Row> */}
-    {/* <Row> */}
       <Col md={12}>
         <div>
-        {/* <div> PPG - {playerInfo.stats.ppg} </div>
-        <div> APG - {playerInfo.stats.apg} </div>
-        <div> RPG - {playerInfo.stats.rpg} </div>
-        <div> SPG - {playerInfo.stats.spg} </div>
-        <div> BPG - {playerInfo.stats.bpg} </div>
-        <div> MPG - {playerInfo.stats.mpg} </div>
-        <div> Games Played - {playerInfo.stats.gamesPlayed} </div> */}
         <Table className='table caption-top'
 bordered
 hover
@@ -144,7 +135,6 @@ Games Played
         <Row>
           {playerInfo?.firstName ? renderSidebar() : <></>}
           <Col md={8} className='cardColumn'>
-        <h1>Your Cards</h1>
           <div className='teamsCardsContainer'>
         {allTeamCards.map((allCardsTeamInfo) => (
           <div key={allCardsTeamInfo.id}>
@@ -170,7 +160,10 @@ Games Played
                   </Card>
                   </div>
         ))}
+              {allTeamCards.length === 0 && <h2>You have No Cards!</h2>}
+
       </div>
+
           </Col>
       </Row>
       </Container>
@@ -178,6 +171,7 @@ Games Played
   );
 }
 AllTeamsCardsView.propTypes = {
-  user: PropTypes.any
+  user: PropTypes.any,
+  allTeamCardsTeamInfo: PropTypes.any
 };
 export default AllTeamsCardsView;

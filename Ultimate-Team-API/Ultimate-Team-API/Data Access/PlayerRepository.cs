@@ -98,7 +98,7 @@ namespace Ultimate_Team_API.Data_Access
 
             var apiPlayers = response.Data.league.standard;
 
-
+            
             foreach (var player in players)
             {
                 var matchingApiPlayer = apiPlayers.FirstOrDefault(p => p.personId == player.PlayerApiId);

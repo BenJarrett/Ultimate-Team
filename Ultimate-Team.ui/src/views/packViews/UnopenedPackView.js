@@ -22,6 +22,8 @@ function UnopenedPackView() {
           />
         ))}
       </div>
+      {pack.length === 0 && <h2>You have no Packs!</h2>}
+
     </div>
   );
 }

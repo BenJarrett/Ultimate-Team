@@ -81,6 +81,7 @@ namespace Ultimate_Team_API.Controllers
 
             var players = _playerRepo.GetFiveRandomPlayers();
             var user = _userRepository.GetUserByGoogleId(GoogleId);
+            //var usersCards = _cardRepository.GetCardsByUserId(user.Id);
 
             var cards = players.Select(p =>
                 new Card
@@ -92,6 +93,7 @@ namespace Ultimate_Team_API.Controllers
                     Tier = GetRandomTier()
                 });
 
+
             foreach (var card in cards)
             {
                 _cardRepository.AddCard(card);
@@ -102,6 +104,8 @@ namespace Ultimate_Team_API.Controllers
 
             return Ok(cards);
         }
+
+
 
         private static Tier GetRandomTier()
         {

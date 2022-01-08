@@ -34,3 +34,143 @@
 .container {
   margin: 40px;
 }
+
+.signOut {
+  font-size: 1rem!important;
+
+  color: #fff59a!important;
+  display: inline-block!important;
+  cursor: pointer!important;
+
+  border: #fff59a 0.125em solid !important;
+  border-radius: 0.35em!important;
+  background-color: transparent!important;
+  text-shadow: 0 0 0.2em #ffffff!important;
+  text-shadow: 0 0 0.25em #fff59a!important;
+
+  box-shadow: 0 0 .5em 0 #fff59a!important;
+  box-shadow: inset 0 0 .5em 0 #fff59a!important;
+
+  position: relative;
+
+  transition: .6s !important;
+}
+
+.signOut::before {
+  content: '' !important;
+  position: absolute !important;
+  background: #fff59a !important;
+  // top: 90%;
+  // left: 0;
+  // width: 100%;
+  // height: 80%;
+
+  transform: perspective(1em) rotateX(40deg) scale(1, 0.35);
+  filter: blur(1.5em);
+  opacity: 0.7;
+  
+}
+
+.signOut::after {
+  content: '' !important;
+  position: absolute !important;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-shadow: 0 0 2em .5em #fff59a;
+  opacity: 0;
+  transition: opacity 100ms linear;
+}
+
+
+.signOut:hover,
+.signOut:focus 
+{
+  background: #fff59a !important;
+  color: #36384d !important;
+  text-shadow: none !important;
+
+  
+}
+
+
+.signOut:hover {
+  opacity: 1!important;
+  transform: scale(1.05);
+  transition: .6s;
+
+}
+.signOut:hover::after {
+  opacity: 1!important;
+}
+
+.signIn {
+  font-size: 1rem!important;
+
+  color: #fff59a!important;
+  display: inline-block!important;
+  cursor: pointer!important;
+
+  border: #fff59a 0.125em solid !important;
+  border-radius: 0.35em!important;
+  background-color: transparent!important;
+  text-shadow: 0 0 0.2em #ffffff!important;
+  text-shadow: 0 0 0.25em #fff59a!important;
+
+  box-shadow: 0 0 .5em 0 #fff59a!important;
+  box-shadow: inset 0 0 .5em 0 #fff59a!important;
+
+  position: relative;
+
+  transition: .6s !important;
+}
+
+.signIn::before {
+  content: '' !important;
+  position: absolute !important;
+  background: #fff59a !important;
+  // top: 90%;
+  // left: 0;
+  // width: 100%;
+  // height: 80%;
+
+  transform: perspective(1em) rotateX(40deg) scale(1, 0.35);
+  filter: blur(1.5em);
+  opacity: 0.7;
+  
+}
+
+.signIn::after {
+  content: '' !important;
+  position: absolute !important;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-shadow: 0 0 2em .5em #fff59a;
+  opacity: 0;
+  transition: opacity 100ms linear;
+}
+
+
+.signIn:hover,
+.signIn:focus 
+{
+  background: #fff59a !important;
+  color: #36384d !important;
+  text-shadow: none !important;
+
+  
+}
+
+
+.signIn:hover {
+  opacity: 1!important;
+  transform: scale(1.05);
+  transition: .6s;
+
+}
+.signIn:hover::after {
+  opacity: 1!important;
+}
