@@ -72,24 +72,11 @@ namespace Ultimate_Team_API.Controllers
             return Ok(_repo.GetPlayersCardsByCardId(id));
         }
 
-        //// Get Player's Cards by Player Id //
-        //[HttpGet("cards/{playerId}")]
-        //public IActionResult GetPlayerCardsByPlayerId(string playerId)
-        //{
-        //    return Ok(_repo.GetPlayersCardsByPlayerId(playerId));
-        //}
-
         // Get Player's by User Id //
         [HttpGet("user/{id}")]
         public IActionResult GetUsersPlayers(Guid id)
         {
             return Ok(_repo.GetUsersPlayersByUserId(id));
-        }
-
-        [HttpGet("random")]
-        public IActionResult GetRandomPlayers()
-        {
-            return Ok(_repo.GetFiveRandomPlayers());
         }
     }
 }

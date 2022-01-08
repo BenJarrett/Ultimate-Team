@@ -56,7 +56,7 @@ const NavBar = ({ user, setUser }) => {
                 </DropdownMenu>
               </UncontrolledDropdown>
               <NavItem>
-                <Link className='nav-link' to="/unopened-packs/:id">Unopened Packs </Link>
+                <Link className='nav-link' to={`/unopened-packs/${user.id}`}>Unopened Packs </Link>
               </NavItem>
               </>
                 : ''

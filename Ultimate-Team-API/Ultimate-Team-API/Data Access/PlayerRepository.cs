@@ -82,7 +82,7 @@ namespace Ultimate_Team_API.Data_Access
             return player;
         }
 
-        internal IEnumerable<Player> GetFiveRandomPlayers()
+        internal IEnumerable<Player> GetFiveRandomPlayers(IEnumerable<string> playersToExclude)
         {
             using var db = new SqlConnection(_connectionString);
 
@@ -109,27 +109,15 @@ namespace Ultimate_Team_API.Data_Access
                 player.YearsPro = matchingApiPlayer.yearsPro;
             }
 
+            players = players.Where(p => !playersToExclude.Contains(p.Id));
+
+
             var randomPlayers = players.OrderBy(x => Guid.NewGuid()).Take(5);
 
             return randomPlayers;
 
         }
 
-        //// Get Player by Card Id //
-        //internal IEnumerable<Player> GetPlayersCardsByPlayerId(string playerId)
-        //{
-        //    using var db = new SqlConnection(_connectionString);
-
-        //    var response = client.Get<AllPlayersResponseData>(request);
-
-        //    var sql = @"Select *
-        //        From Cards
-        //        WHERE playerId = @playerId";
-
-        //    var cards = db.Query<Card>(sql, new { playerId = playerId });
-
-        //    return cards;
-        //}
 
         // Get All Players on a Specific Team //
         internal IEnumerable<Player> GetPlayersByTeamId(string teamId)

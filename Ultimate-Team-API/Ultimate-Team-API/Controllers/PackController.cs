@@ -79,9 +79,9 @@ namespace Ultimate_Team_API.Controllers
             var packToUpdate = _packRepository.GetAPackByPackId(id);
             if (packToUpdate == null) NotFound($"Could Not find Pack with the id {id} to update");
 
-            var players = _playerRepo.GetFiveRandomPlayers();
             var user = _userRepository.GetUserByGoogleId(GoogleId);
-            //var usersCards = _cardRepository.GetCardsByUserId(user.Id);
+            var usersCards = _cardRepository.GetCardsByUserId(user.Id).Select(cards => cards.PlayerId);
+            var players = _playerRepo.GetFiveRandomPlayers(usersCards);
 
             var cards = players.Select(p =>
                 new Card
@@ -92,7 +92,6 @@ namespace Ultimate_Team_API.Controllers
                     UserId = user.Id,
                     Tier = GetRandomTier()
                 });
-
 
             foreach (var card in cards)
             {
