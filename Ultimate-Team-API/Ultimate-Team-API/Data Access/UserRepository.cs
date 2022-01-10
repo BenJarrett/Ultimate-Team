@@ -64,10 +64,19 @@ namespace Ultimate_Team_API.Data_Access
 
         internal User GetUserByGoogleId(string googleId)
         {
+            // Establishes the connection with the databsae //
             using var db = new SqlConnection(_connectionString);
+            
+            // Selects the user that with the matching googleId param //
+            // Sets this to the variable of 'sql' //
             var sql = @"SELECT * FROM Users
                         WHERE googleId = @googleId";
+
+            // This query gets the first user matching this sqp param and splits on the googleId //
+            // The result of this is set the variable 'user'
             var user = db.QuerySingleOrDefault<User>(sql, new { googleId });
+
+            // Returns user variable //
             return user;
 
         }

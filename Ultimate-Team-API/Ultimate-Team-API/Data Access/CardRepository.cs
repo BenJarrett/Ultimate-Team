@@ -4,8 +4,6 @@ using Microsoft.Extensions.Configuration;
 using RestSharp;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Ultimate_Team_API.Models;
 using Ultimate_Team_API.Models.ExternalPlayerAPI;
 
@@ -99,33 +97,31 @@ namespace Ultimate_Team_API.Data_Access
         // Get all Users' Cards //
         internal IEnumerable<Card> GetCardsByUserId(Guid userId)
         {
+            // Establishes a connection with the database //
             using var db = new SqlConnection(_connectionString);
 
+            // Selects the cards that have a matching userId from the database to the params given. The id of the user in this situation //
+            // Sets the results of this to the variable 'sql' //
             var sql = @"Select *
                 From Cards
                 WHERE userId = @id";
 
+            // Executes the query and returns a Card data type. Takes in the sql variable as a param and splits on the userId //
+            // Sets the results to the variable of 'cards'
             var cards = db.Query<Card>(sql, new { id = userId });
 
+            // Returns our variable of cards //
             return cards;
         }
 
-        internal IEnumerable<Card> GetFiveRandomCards()
-        {
-            using var db = new SqlConnection(_connectionString);
-
-            var players = db.Query<Card>(@"Select *
-                                        From Cards");
-
-
-            var randomPlayers =  players.OrderBy(x => Guid.NewGuid()).Take(5);
-
-            return randomPlayers;
-        }
         internal void AddCard(Card newCard)
         {
+            // Establishes Connection with my database //
             using var db = new SqlConnection(_connectionString);
 
+            // Inserts the given information into the Cards table of my database //
+            // Outputs the created Id of the created cards //
+            // Sets this to the variable of 'sql' //
             var sql = @"INSERT INTO [dbo].[Cards]
                                        (
                                         [playerId]
@@ -137,6 +133,8 @@ namespace Ultimate_Team_API.Data_Access
                                  VALUES
 		                            (@playerId, @tier, @cardImage, @userId, @packId)";
 
+            // sets the value of the new card to the value of the scalar variables from the insterted information for the new card //
+            // Sets this to the variable of 'parameters' //
             var parameters = new
             {
                 PlayerId = newCard.PlayerId,
@@ -146,25 +144,13 @@ namespace Ultimate_Team_API.Data_Access
                 PackId = newCard.PackId
             };
 
+            // Executes the sql with the given parameters and selects a single string //
+            // Set to the variable of id //
             var id = db.ExecuteScalar<string>(sql, parameters);
 
+            // Set the id variable equal to the newCard.Id //
             newCard.Id = id;
         }
-
-
-        //internal Card AssignToUser(Guid id, Card card)
-        //{
-        //    using var db = new SqlConnection(_connectionString);
-
-        //    var sql = @"update Cards set 
-        //                User.Id = @userId
-
-        //            output inserted.Id
-        //            Where Id = @id";
-
-        //    card.Id = id;
-        //}
-
 
 
         // Get Teams Cards of a Specific User //

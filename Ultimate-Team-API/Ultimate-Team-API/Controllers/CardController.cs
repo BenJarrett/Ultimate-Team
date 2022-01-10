@@ -74,45 +74,6 @@ namespace Ultimate_Team_API.Controllers
             return Ok(_repo.GetCardsByPackId(id));
         }
 
-        //[HttpPut("{id}")]
-        //public IActionResult AssignCardToUser(Guid id, Card card)
-        //{
-        //    var cardToupdate = _repo.GetCardsByPackId(id);
-        //    var userToAssign = _userRepo.GetSingleUserById(id);
-
-        //    if (cardToupdate == null) NotFound($"Could Not find Cards with the pack id {id} to assign ");
-
-        //    //var updatedCards = _repo.AssignToUser(id, card);
-        //    return Ok(updatedCards);
-        //}
-
-        // Get 5 Random Cards //
-        [HttpGet("random")]
-        public IActionResult GetRandomCards()
-        {
-            return Ok(_repo.GetFiveRandomCards());
-        }
-
-        // Add Card //
-        [HttpPost]
-        public IActionResult AddCard(CreateCardCommand command)
-        {
-            //var players = _playerRepo.GetFiveRandomPlayers();
-
-            var card = new Card
-            {   PlayerId = command.PlayerId,
-                UserId = command.UserId,
-                PackId = command.PackId,
-                Tier = command.Tier,
-                CardImage = command.PlayerImage
-            };
-
-
-            _repo.AddCard(card);
-
-            return Created($"/api/cards/{card.Id}", card);
-        }
-
         [HttpPut("{playerId}")]
         public IActionResult UpdateCardPlayerId(string id, Card card)
         {
