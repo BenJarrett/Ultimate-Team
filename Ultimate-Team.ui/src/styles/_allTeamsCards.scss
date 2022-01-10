@@ -34,6 +34,14 @@
   border-bottom: 10px #fff59a solid!important;
   box-shadow: 0 8px 14px 0 rgba(80, 77, 77, 0.486);
   transition: .7s;
+  .card img {
+    height: 250px;
+    width: 193px;
+    object-fit: cover !important;
+    align-self: center;
+    
+  }
+
 }
 
   .playerCard:hover {
