@@ -29,18 +29,23 @@ namespace Ultimate_Team_API.Data_Access
             return packs;
         }
 
-        // Get A Single Pack by PAck Id
+        // Get A Single Pack by Pack Id
         internal Pack GetAPackByPackId(Guid id)
         {
+            // Establishes the connection with the database
             using var db = new SqlConnection(_connectionString);
 
+            // Selecting all the information from the pack that is equal to the pack id given in the params //
+            // Sets the result from the database to the variable 'sql' //
             var sql = @"Select *
                         From Packs
                         where id = @id";
 
-
+            // Grabs the first pack based upon the sql param and splits on the id //
+            // Sets this to the variable of 'pack'
             var pack = db.QueryFirstOrDefault<Pack>(sql, new { id });
 
+            // Returns our result //
             return pack;
         }
 

@@ -84,24 +84,41 @@ namespace Ultimate_Team_API.Data_Access
 
         internal IEnumerable<Player> GetFiveRandomPlayers(IEnumerable<string> playersToExclude)
         {
+            // Establishes connection to the database //
+            // Sets it to the variable of 'db'
             using var db = new SqlConnection(_connectionString);
 
-
+            // This is the link to the API page I am using for the players //
+            // Sets this to the variable of 'client'
             var client = new RestClient("http://data.nba.net/data/10s/prod/v1/2021");
 
+            // Dictates this request to the players end point of the api //
+            // Sets this to the variable of 'request'
             var request = new RestRequest("players.json");
 
+            // Uses the prior variables //
+            // Sets the response to the shape of All Players Response Data //
             var response = client.Get<AllPlayersResponseData>(request);
 
+            // Selects all the players and all their info from my database //
+            // Sets this to the variable of 'players'
             var players = db.Query<Player>(@"Select *
                                         From Players");
 
+            // Sets request spot of the API to the variable 'apiPlayers' //
+            // This list has a personId // 
+            // The value of personId is set to the value of the playerApiId in the Players table of my databsae //
+            // The playerApiId is the value I use to connect my database with the third party API //
             var apiPlayers = response.Data.league.standard;
 
-            
+            // Loops through each player of my database that matches the player in the Thirdparty API and sets the Player Model attributes based on the real time data from the TPApi //
             foreach (var player in players)
             {
+                // This grabs the first player of the api with a personId that matches the playerApiId of my database //
+                // This is set to the variable of 'matchingApiPlayer' //
                 var matchingApiPlayer = apiPlayers.FirstOrDefault(p => p.personId == player.PlayerApiId);
+
+                // Sets the Player Model attributes to the data from the matching player's attributes from the third Party Api //
                 player.Height = $"{matchingApiPlayer.heightFeet}' {matchingApiPlayer.heightInches}\"";
                 player.Weight = matchingApiPlayer.weightPounds;
                 player.Position = matchingApiPlayer.pos;
@@ -109,11 +126,16 @@ namespace Ultimate_Team_API.Data_Access
                 player.YearsPro = matchingApiPlayer.yearsPro;
             }
 
+            // This is the logic that basically says to grab players from the player list that do not contain any matching ids // 
+            // Sets this to the variable of 'players' //
+            // This is how I am preventing any duplicate players from being made whent the cards are made in the controller //
             players = players.Where(p => !playersToExclude.Contains(p.Id));
 
-
+            // Takes that list players from the players virable above and grabs 5 random players from that list //
+            // Sets it to the vairable of 'randomPlayers' //
             var randomPlayers = players.OrderBy(x => Guid.NewGuid()).Take(5);
 
+            // Returns those five random players //
             return randomPlayers;
 
         }
