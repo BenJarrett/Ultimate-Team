@@ -43,16 +43,6 @@ namespace Ultimate_Team_API.Data_Access
 
             var newStat = new Stat();
 
-            //foreach (var stat in stats)
-            //{
-            //    var matchingApiPlayer = apiPlayers.FirstOrDefault(p => p.personId == player.PlayerApiId);
-            //    player.Height = $"{matchingApiPlayer.heightFeet}' {matchingApiPlayer.heightInches}\"";
-            //    player.Weight = matchingApiPlayer.weightPounds;
-            //    player.Position = matchingApiPlayer.pos;
-            //    player.Age = matchingApiPlayer.dateOfBirthUTC;
-            //    player.YearsPro = matchingApiPlayer.yearsPro;
-            //}
-
             newStat.PPG = apiStats.ppg;
             newStat.APG = apiStats.apg;
             newStat.RPG = apiStats.rpg;
@@ -66,26 +56,41 @@ namespace Ultimate_Team_API.Data_Access
         // Get Player's Stats //
         internal Player GetStatsByPlayerId(string playerId)
         {
+            // Establishes connection my database // 
+            // Sets it to the variable 'db' //
             using var db = new SqlConnection(_connectionString);
 
+            // This is the link to the API page I am using for the players //
+            // Sets this to the variable of 'client' //
             var client = new RestClient("http://data.nba.net/data/10s/prod/v1/2021");
 
             try
             {
+                // Get's player by Id // 
+                // Uses the playerId param //
+                // Sets this to the variable of 'player' //
                 var player = _playerRepo.GetPlayerById(playerId);
 
+                // sends request to third party api // 
+                // This request is the playerApiId of the player we got in the above variable // 
+                // Sets it to the variable 'request' //
                 var request = new RestRequest($"players/{player.PlayerApiId}_profile.json");
 
-
+                // This is the response of that data // 
+                // Matches it to the data shap of the response data //
+                // We pass it the request from above // 
+                // Sets this to the variable 'response' //
                 var response = client.Get<AllStatsResponseData>(request);
 
+                // This is the specific endpoint of where we want to grab the data from the third party api // 
+                // Sets it to the variable of apiStats //
                 var apiStats = response.Data.league.standard.stats.latest;
 
+                // establishes a new stat // 
+                // that is set to the variable of 'stat' //
                 var newStat = new Stat();
-
-                //foreach (var stat in playersStats)
-                //{
                 
+                // Sets the Stat model values to the api the endpoint values of the third party api from above //
                 newStat.PPG = apiStats.ppg;
                 newStat.APG = apiStats.apg;
                 newStat.RPG = apiStats.rpg;
@@ -93,16 +98,11 @@ namespace Ultimate_Team_API.Data_Access
                 newStat.BPG = apiStats.bpg;
                 newStat.MPG = apiStats.mpg;
                 newStat.GamesPlayed = apiStats.gamesPlayed;
-                //stat.APG = matchingApiStat.apg;
-                //stat.RPG = matchingApiStat.rpg;
-                //stat.BPG = matchingApiStat.bpg;
-                //stat.SPG = matchingApiStat.spg;
-                //stat.MPG = matchingApiStat.mpg;
-                //stat.GamesPlayed = matchingApiStat.gamesPlayed;
-                //}
 
+                // The player model attribute Stats is set to an instance of each new stat //
                 player.Stats = newStat;
 
+                // Return the players information with their up to date stats //
                 return player;
             }
 

@@ -55,30 +55,48 @@ namespace Ultimate_Team_API.Data_Access
         // Get Single Player by Id //
         internal Player GetPlayerById(string id)
         {
+            // Establishes connection with the database //
+            // Sets this to the variable 'db' // 
             using var db = new SqlConnection(_connectionString);
 
+            // This is the link to the API page I am using for the players //
+            // Sets this to the variable of 'client'
             var client = new RestClient("http://data.nba.net/data/10s/prod/v1/2021");
 
+            // Dictates this request to the players end point of the api //
+            // Sets this to the variable of 'request'
             var request = new RestRequest("players.json");
 
+            // This is the response of that data // 
+            // Matches it to the data shap of the response data //
+            // Uses the prior variables //
+            // Sets the response to the shape of All Players Response Data //
             var response = client.Get<AllPlayersResponseData>(request);
 
+            // Selects all the Player table info from my database with the matching parameter // 
+            // Sets this to the variable 'sql' //
             var sql = @"Select *
                         From Players
                         where id = @id";
 
-
+            // Grabs the player matching the sql variable and splits on id //
+            // Sets this to the variable 'player' //
             var player = db.QueryFirstOrDefault<Player>(sql, new { id });
 
+            // This is the specific endpoint of where we want to grab the data from the third party api // 
+            // Sets it to the variable of apiPlayers //
             var apiPlayers = response.Data.league.standard;
 
-                var matchingApiPlayer = apiPlayers.FirstOrDefault(p => p.personId == player.PlayerApiId);
+            // This grabs the first player of the api with a personId that matches the playerApiId of my database //
+            // This is set to the variable of 'matchingApiPlayer' //
+            var matchingApiPlayer = apiPlayers.FirstOrDefault(p => p.personId == player.PlayerApiId);
                 player.Height = $"{matchingApiPlayer.heightFeet}' {matchingApiPlayer.heightInches}\"";
                 player.Weight = matchingApiPlayer.weightPounds;
                 player.Position = matchingApiPlayer.pos;
                 player.Age = matchingApiPlayer.dateOfBirthUTC;
                 player.YearsPro = matchingApiPlayer.yearsPro;
 
+            // returns the player with the new info from the third party API //
             return player;
         }
 
@@ -217,8 +235,10 @@ namespace Ultimate_Team_API.Data_Access
         // Get All Players in Eastern Conference //
         internal IEnumerable<Player> GetPlayersInEasternConference()
         {
+
             using var db = new SqlConnection(_connectionString);
 
+            // 
             var client = new RestClient("http://data.nba.net/data/10s/prod/v1/2021");
 
             var request = new RestRequest("players.json");
