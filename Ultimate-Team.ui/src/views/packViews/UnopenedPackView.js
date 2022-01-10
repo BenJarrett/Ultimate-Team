@@ -13,7 +13,7 @@ function UnopenedPackView() {
   }, []);
 
   return (
-    <div>
+    <div className="teamsCardsContainer">
       <div className='packsContainer'>
         {pack.map((packInfo) => (
           <SinglePackCard
