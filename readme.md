@@ -67,7 +67,7 @@ Viewing a Card's Stat's
 - When a User clicks on a player's card, they will see their updated information and stats from a combination of external API and my API.
 <hr />
 
-### Front End Technoliges
+### Front End Technoligies
 - React
 - JSX
 - JQuery
