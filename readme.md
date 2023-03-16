@@ -78,7 +78,7 @@ Viewing a Card's Stat's
 - Javascript
 <hr />
 
-### Front End Technoliges
+### Back End Technoligies
 - C#
 - .Net
 - Swagger
@@ -88,6 +88,3 @@ Viewing a Card's Stat's
 - Linq
 - Third Party API
 <hr />
-
-### Loom Video Walk-through
-- To be recorded when MVP is fully hit. 
