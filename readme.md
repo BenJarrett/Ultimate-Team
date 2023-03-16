@@ -64,7 +64,7 @@ Viewing a Card's Stat's
 - When the user opens a pack, the cards assigned to the pack are now added to their collection
 - User can see how many cards they have for each team
 - When user clicks on a team, they can view the cards they have collected of that team
-- When a User clicks on a player's card, they will see their updated information and stats from a combination of external API and my API.
+- When a User clicks on a player's card, they will see their updated real-time information and stats from a combination of external API and my API.
 <hr />
 
 ### Front End Technoligies
