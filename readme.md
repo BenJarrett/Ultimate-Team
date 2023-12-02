@@ -18,10 +18,6 @@ I am a huge NBA fan, as well as a stats nerd. I wanted to create an app that all
 https://dbdiagram.io/d/61aa9e2d8c901501c0dff9cf
 <hr />
 
-### Deployment Link
-This is not deployed. Deploying a full stack application is not something we have covered here at NSS.
-<hr />
-
 ### WIREFRAME 
 https://lucid.app/lucidchart/e11c7f2d-b717-413d-9514-14eb17b36971/edit?invitationId=inv_455062f5-4667-4c50-9e1d-aa603510df11
 <hr />
