@@ -85,3 +85,5 @@ Viewing a Card's Stat's
 - Third Party API
 <hr />
 testing this again 
+
+please work like it was before
