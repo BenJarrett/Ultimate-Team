@@ -84,7 +84,4 @@ Viewing a Card's Stat's
 - Linq
 - Third Party API
 <hr />
-
-Test
-
-Test #2
+ TEsting again 
