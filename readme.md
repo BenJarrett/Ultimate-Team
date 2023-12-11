@@ -87,3 +87,6 @@ Viewing a Card's Stat's
 testing this again 
 
 please work like it was before
+
+
+again
