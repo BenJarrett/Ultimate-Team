@@ -1,3 +1,5 @@
+*** The third party api used in callorbation of my own has stopped serving requests. Currently updating this project with another API for real time stats ***
+
 # Full Stack Capstone
 <hr />
 
