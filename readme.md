@@ -84,11 +84,3 @@ Viewing a Card's Stat's
 - Linq
 - Third Party API
 <hr />
-testing this again 
-
-please work like it was before
-
-asdfasdfasdf
-testing agsdadafdsasdasdf asdfas d tasfxfafwasdgadfasd fasdfasdfasdf 
-
-asdfasdf asdf asdfasdfasfasdfasdfasdfasdfsadasdfasdfasdfasdf  ASDFASDFasdfasdfasdfasdf asdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfdsafASDwsadfasdfasdfasdfasdfasdfasdfasdfasdfaasdfasdf
