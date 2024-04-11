@@ -9,7 +9,7 @@
 
 ### Overview
 
-Ultimate Team is an interactive NBA card collecting application targeted to sports fans who love collecting cards. I am using a third party API, as well as my own, to create a platform for user to open packs of cards and keep up on their players current stats. In this app, users can earn packs filled with cards, when they open these packs, the user can now view them in their collection and all of that player's current stats! 
+Ultimate Team is an interactive NBA card collecting application targeted to sports fans who love collecting cards. I am using a third party API, as well as my own, to create a platform for users to open packs of cards and keep up on their players current stats. In this app, users can earn packs filled with cards, when they open these packs, the user can now view them in their collection and all of that player's current stats! 
 <hr />
 
 ### Personal Motivation
