@@ -79,6 +79,7 @@ Viewing a Card's Stat's
 ### Back End Technoligies
 - C#
 - .Net
+- Dapper
 - Swagger
 - MySQL
 - Microsoft SQL Server Management Studio
