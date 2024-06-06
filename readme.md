@@ -80,6 +80,7 @@ Viewing a Card's Stat's
 - C#
 - .Net
 - Dapper
+- MVC
 - Swagger
 - MySQL
 - Microsoft SQL Server Management Studio
