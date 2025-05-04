@@ -65,7 +65,7 @@ Viewing a Card's Stat's
 - When a User clicks on a player's card, they will see their updated real-time information and stats from a combination of external API and my API.
 <hr />
 
-### Front End Technoligies
+### Front End Tech
 - React
 - JSX
 - JQuery
@@ -76,7 +76,7 @@ Viewing a Card's Stat's
 - Javascript
 <hr />
 
-### Back End Technoligies
+### Back End Tech
 - C#
 - .Net
 - Dapper
