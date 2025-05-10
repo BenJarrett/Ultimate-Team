@@ -176,7 +176,7 @@ namespace Ultimate_Team_API.Data_Access
                                              and t.id = @tId";
             var cards = db.Query<Card>(sql, new { id = userId, tId = teamId });
 
-            var apiPlayers = response.Data.league.standard;
+            var apiPlayers = response.league.standard;
 
             return cards;
         }

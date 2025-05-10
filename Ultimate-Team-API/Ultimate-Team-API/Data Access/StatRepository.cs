@@ -39,7 +39,7 @@ namespace Ultimate_Team_API.Data_Access
                                         From Stats");
 
 
-            var apiStats = response.Data.league.standard.stats.latest;
+            var apiStats = response.league.standard.stats.latest;
 
             var newStat = new Stat();
 
@@ -84,12 +84,12 @@ namespace Ultimate_Team_API.Data_Access
 
                 // This is the specific endpoint of where we want to grab the data from the third party api // 
                 // Sets it to the variable of apiStats //
-                var apiStats = response.Data.league.standard.stats.latest;
+                var apiStats = response.league.standard.stats.latest;
 
                 // establishes a new stat // 
                 // that is set to the variable of 'stat' //
                 var newStat = new Stat();
-                
+
                 // Sets the Stat model values to the api the endpoint values of the third party api from above //
                 newStat.PPG = apiStats.ppg;
                 newStat.APG = apiStats.apg;
@@ -113,7 +113,7 @@ namespace Ultimate_Team_API.Data_Access
             }
 
 
-            
+
         }
     }
 }

@@ -37,7 +37,7 @@ namespace Ultimate_Team_API.Data_Access
             var players = db.Query<Player>(@"Select *
                                         From Players");
 
-            var apiPlayers = response.Data.league.standard;
+            var apiPlayers = response.league.standard;
 
             foreach (var player in players)
             {
@@ -50,7 +50,7 @@ namespace Ultimate_Team_API.Data_Access
             }
 
             return players;
-        } 
+        }
 
         // Get Single Player by Id //
         internal Player GetPlayerById(string id)
@@ -85,16 +85,16 @@ namespace Ultimate_Team_API.Data_Access
 
             // This is the specific endpoint of where we want to grab the data from the third party api // 
             // Sets it to the variable of apiPlayers //
-            var apiPlayers = response.Data.league.standard;
+            var apiPlayers = response.league.standard;
 
             // This grabs the first player of the api with a personId that matches the playerApiId of my database //
             // This is set to the variable of 'matchingApiPlayer' //
             var matchingApiPlayer = apiPlayers.FirstOrDefault(p => p.personId == player.PlayerApiId);
-                player.Height = $"{matchingApiPlayer.heightFeet}' {matchingApiPlayer.heightInches}\"";
-                player.Weight = matchingApiPlayer.weightPounds;
-                player.Position = matchingApiPlayer.pos;
-                player.Age = matchingApiPlayer.dateOfBirthUTC;
-                player.YearsPro = matchingApiPlayer.yearsPro;
+            player.Height = $"{matchingApiPlayer.heightFeet}' {matchingApiPlayer.heightInches}\"";
+            player.Weight = matchingApiPlayer.weightPounds;
+            player.Position = matchingApiPlayer.pos;
+            player.Age = matchingApiPlayer.dateOfBirthUTC;
+            player.YearsPro = matchingApiPlayer.yearsPro;
 
             // returns the player with the new info from the third party API //
             return player;
@@ -127,7 +127,7 @@ namespace Ultimate_Team_API.Data_Access
             // This list has a personId // 
             // The value of personId is set to the value of the playerApiId in the Players table of my databsae //
             // The playerApiId is the value I use to connect my database with the third party API //
-            var apiPlayers = response.Data.league.standard;
+            var apiPlayers = response.league.standard;
 
             // Loops through each player of my database that matches the player in the Thirdparty API and sets the Player Model attributes based on the real time data from the TPApi //
             foreach (var player in players)
@@ -176,7 +176,7 @@ namespace Ultimate_Team_API.Data_Access
 
             var players = db.Query<Player>(sql, new { id = teamId });
 
-            var apiPlayers = response.Data.league.standard;
+            var apiPlayers = response.league.standard;
 
 
             foreach (var player in players)
@@ -212,11 +212,11 @@ namespace Ultimate_Team_API.Data_Access
 							where t.conferenceType = 1";
 
 
-            
+
             var players = db.Query<Player>(sql);
 
-            var apiPlayers = response.Data.league.standard;
-            
+            var apiPlayers = response.league.standard;
+
             foreach (var player in players)
             {
                 var matchingApiPlayer = apiPlayers.FirstOrDefault(p => p.personId == player.PlayerApiId);
@@ -254,7 +254,7 @@ namespace Ultimate_Team_API.Data_Access
 
             var players = db.Query<Player>(sql);
 
-            var apiPlayers = response.Data.league.standard;
+            var apiPlayers = response.league.standard;
 
             foreach (var player in players)
             {
@@ -288,7 +288,7 @@ namespace Ultimate_Team_API.Data_Access
 
             var players = db.Query<Player>(sql, new { id = cardId });
 
-            var apiPlayers = response.Data.league.standard;
+            var apiPlayers = response.league.standard;
 
             foreach (var player in players)
             {
@@ -298,7 +298,8 @@ namespace Ultimate_Team_API.Data_Access
                 player.Position = matchingApiPlayer.pos;
                 player.Age = matchingApiPlayer.dateOfBirthUTC;
                 player.YearsPro = matchingApiPlayer.yearsPro;
-            };
+            }
+            ;
 
             return players;
         }
@@ -324,7 +325,7 @@ namespace Ultimate_Team_API.Data_Access
 
             var cards = db.Query<Player>(sql, new { id = userId });
 
-            var apiPlayers = response.Data.league.standard;
+            var apiPlayers = response.league.standard;
 
             foreach (var player in cards)
             {
@@ -334,7 +335,8 @@ namespace Ultimate_Team_API.Data_Access
                 player.Position = matchingApiPlayer.pos;
                 player.Age = matchingApiPlayer.dateOfBirthUTC;
                 player.YearsPro = matchingApiPlayer.yearsPro;
-            };
+            }
+            ;
 
             return cards;
         }

@@ -34,7 +34,7 @@ namespace Ultimate_Team_API.Data_Access
 
             var teams = db.Query<Team>(@"Select *
                                         From Teams");
-            var apiTeams = response.Data.league.standard;
+            var apiTeams = response.league.standard;
 
             foreach (var team in teams)
             {
@@ -65,7 +65,7 @@ namespace Ultimate_Team_API.Data_Access
 
             var teams = db.Query<Team>(sql);
 
-            var apiTeams = response.Data.league.standard;
+            var apiTeams = response.league.standard;
 
             foreach (var team in teams)
             {
@@ -96,7 +96,7 @@ namespace Ultimate_Team_API.Data_Access
 
             var teams = db.Query<Team>(sql);
 
-            var apiTeams = response.Data.league.standard;
+            var apiTeams = response.league.standard;
 
             foreach (var team in teams)
             {
